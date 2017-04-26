@@ -17,8 +17,11 @@ private:
 protected:
 
 public:
+	int size;
 	Camera();
 	Camera(vec3 *newPos);
+	Camera(int a);
+	unsigned char * dArray;
 	void Update();
 	void SetPos(float a, float b, float c);
 	void SetLA(float a, float b, float c);

@@ -5,8 +5,14 @@
 using namespace std;
 
 class BruteForce:public Terrain
-{		
+{	
+
+private:
+	int flatten;
+
 public:
+	
+	int getFlatten() {return flatten;};
 	void Render(void);
 	BruteForce(void){};
 	~BruteForce(void){};
