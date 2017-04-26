@@ -5,6 +5,8 @@
 
 Camera::Camera()
 {
+	size = gameWorld.terrain.getSize();
+	dArray = new unsigned char [size*size];
 	SetPos(0, 0, 0);
 	SetLA(0, 0, -1);
 	SetAcc(0, 0, 0);
@@ -12,6 +14,17 @@ Camera::Camera()
 
 	yaw = 95;
 	pitch = 0;
+	/*for (int i = 0; i < size * size; i++)
+	{
+		dArray[i] = gameWorld.terrain.terrainData[i];
+		
+	}*/
+
+}
+
+Camera::Camera(int a)
+{
+	yaw = a;
 }
 
 Camera::Camera(vec3 *newPos)
@@ -65,59 +78,58 @@ void Camera::AddVel(float a, float b, float c)
 	vel.z += c;
 }
 
-void Camera::Update()
+void Camera::Update(float deltaT)
 {
 	if (yaw >= 360 || yaw <= -360)
 	{
-		yaw = 0.0f;
+		yaw = 0;
 	}
 
-	if (pitch > 60.0f)
+	if (pitch > 60)
 	{
-		pitch = 60.0f;
+		pitch = 60;
 	}
-	if (pitch < -60.0f)
+	if (pitch < -60)
 	{
-		pitch = -60.0f;
+		pitch = -60;
 	}
 
 	float cosYaw = (float)cos(degToRad(yaw));
 	float sinYaw = (float)sin(degToRad(yaw));
 	float sinPitch = (float)sin(degToRad(pitch));
 
-	float speed = vel.z;
-	float strafespeed = vel.x;
+	float speed = vel.z*deltaT;
+	float strafespeed = vel.x*deltaT;
 
-	if (speed > 15.0)
-		speed = 15.0;
-	if (speed < -15.0)
-		speed = -15.0;
-	if (strafespeed > 15.0)
-		strafespeed = 15.0;
-	if (strafespeed < -15.0)
-		strafespeed = -15.0;
+	if (speed > 15)
+		speed = 15;
+	if (speed < -15)
+		speed = -15;
+	if (strafespeed > 15)
+		strafespeed = 15;
+	if (strafespeed < -15)
+		strafespeed = -15;
 
-	if (sqrt((vel.x*vel.x) + (vel.y*vel.y) + (vel.z*vel.z)) > 0.0)
+	if (sqrt((vel.x*vel.x) + (vel.y*vel.y) + (vel.z*vel.z)) > 0)
 	{
-		accel.x = -vel.x * 1.5f;
-		accel.y = -vel.y * 1.5f;
-		accel.z = -vel.z * 1.5f;
+		accel.x = -vel.x * 1.5;
+		accel.y = -vel.y * 1.5;
+		accel.z = -vel.z * 1.5;
 	}
 
-	vel.x += accel.x;
-	vel.y += accel.y;
-	vel.z += accel.z;
+	vel.x += accel.x*deltaT;
+	vel.y += accel.y*deltaT;
+	vel.z += accel.z*deltaT;
 
-	pos.x += float(cos(degToRad(yaw + 90.0)))*strafespeed;
-	cout << pos.x << endl;
-	pos.z += float(sin(degToRad(yaw + 90.0)))*strafespeed;
+	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
+	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.terrain.getHeight(pos.x, pos.y) + 0.1;
+	pos.y = gameWorld.getWorldXZHeight(pos.x,pos.z) / 4 + 15;
 
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = (pos.y + sinPitch);
 	lookAt.z = (pos.z + sinYaw);
-
-	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0.0, 1.0, 0.0);
+	//cout << pos.x << " " << pos.y << " "  << pos.z << endl;
+	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);
 }

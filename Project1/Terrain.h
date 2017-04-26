@@ -12,7 +12,7 @@ struct Texture
 class Terrain
 {
 	protected:
-		unsigned char *terrainData;
+		
 		unsigned char *textData;
 		float scaleX;
 		float scaleY;
@@ -24,6 +24,7 @@ class Terrain
 		int size;
 
 	public:
+		unsigned char *terrainData;
 		bool loadHeightfield(char *filename, const int size);
 		void loadTexture(char *filename, const int size);
 		void setScalingFactor(float xScale, float yScale, float zScale);

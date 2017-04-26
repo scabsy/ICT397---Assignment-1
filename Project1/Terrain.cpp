@@ -108,7 +108,6 @@ float Terrain::getHeight(int xpos, int zpos) {
 unsigned char Terrain::getHeightColor(int xpos, int zpos) {
 	if (inbounds(xpos, zpos)) {
 		return (terrainData[((int)(zpos/(size*scaleZ)*size)) + (int)(xpos / (size*scaleZ))]);
-		//return (terrainData[(zpos / ((size / scaleZ)*size))*size) + (xpos)]);
 	}
 	return 1;
 }

@@ -1,0 +1,12 @@
+﻿  BruteForce.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\BruteForce.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  Camera.cpp
+Camera.cpp(2): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  main.cpp
+main.cpp(2): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  OBJLoader.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\OBJLoader.h(10): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  Terrain.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  World.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\World.h(4): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory

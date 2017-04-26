@@ -4,6 +4,8 @@
 #include "freeglut.h"
 #include "Camera.h"
 #include "BruteForce.h"
+#include "OBJLoader.h"
+
 using namespace std;
 
 class World
@@ -20,7 +22,9 @@ protected:
 
 public:
 	BruteForce terrain;
-	//Camera *camera;
+	int monkey;
+	OBJLoader obj;
+	Camera camera;
 	/*Player *player;
 	AudioSystem * audioSystem;
 	Audio *worldSound;
@@ -46,5 +50,7 @@ public:
 	bool IsGameDone() { return gameDone; }
 	void QuitGame() { gameDone = true; }
 	int GetNpcs() { return numNpcs; }
-	float getWorldXZHeight(float x, float z) { return terrain.getHeight(x, z); }
+	float getWorldXZHeight(int x, int z) { return terrain.getHeight(x, z); }
+
+	double time0, time1;
 };

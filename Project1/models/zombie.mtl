@@ -1,0 +1,79 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl Material_#2
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\EyeBall_Diffuse.tga
+
+newmtl Material_#3
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Teeth_Diffuse.tga
+map_d D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Teeth_Diffuse.tga
+
+newmtl Material_#4
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Tongue_Diffuse.tga
+map_d D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Tongue_Diffuse.tga
+
+newmtl Material_#5
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Shoes_Normal.tga
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Shoes_Diffuse.tga
+
+newmtl clothing
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Clothing_Normal.tga
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Clothing_Diffuse.tga
+
+newmtl longHair
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\LongHair_Normal.tga
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\LongHair_Diffuse.tga
+map_d D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\LongHair_Diffuse.png
+
+newmtl skin
+Ns 19.607843
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Bump D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Skin_Normal.tga
+map_Kd D:\\Documents\\Evocca\\C4\\1-Create a complex 3-D interactive game\\Assessments\\assets\\Characters\\Zombie\\animations\\zombie_ref.fbm\\Skin_Diffuse.tga

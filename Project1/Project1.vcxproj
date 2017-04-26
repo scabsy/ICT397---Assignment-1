@@ -73,6 +73,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -80,10 +81,10 @@
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="singletons.h" />
     <ClInclude Include="Terrain.h" />
-    <ClInclude Include="vector.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

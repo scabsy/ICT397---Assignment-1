@@ -6,6 +6,13 @@
 
 struct vec3
 {
+	vec3()
+		: x(0),
+		  y(0),
+		  z(0)
+	{
+
+	}
 	float x;
 	float y;
 	float z;
@@ -17,9 +24,12 @@ private:
 protected:
 
 public:
+	int size;
 	Camera();
 	Camera(vec3 *newPos);
-	void Update();
+	Camera(int a);
+	unsigned char * dArray;
+	void Update(float deltaT);
 	void SetPos(float a, float b, float c);
 	void SetLA(float a, float b, float c);
 	void SetAcc(float a, float b, float c);

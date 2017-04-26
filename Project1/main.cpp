@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Camera cam;
+//Camera cam;
 
 float _angle = 180.0f;
 
@@ -50,44 +50,26 @@ void init(void)
 
 void display(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	
-	GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f};
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
-	
-	GLfloat lightColor0[] = {0.6f, 0.6f, 0.6f, 1.0f};
-	GLfloat lightPos0[] = {-0.5f, 0.8f, 0.1f, 0.0f};
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
-
-	//glTranslatef(camX, camY, camZ);
-	//glRotatef(-_angle, 0.0f, 1.0f, 0.0f);
-
-	cam.Update();
 	gameWorld.Draw();
-	
-	glutPostRedisplay();
-    glutSwapBuffers();
 }
+
 
 void keys(unsigned char key, int x, int y)
 {
+	auto speed = 5.f;
 	switch (key)
 	{
 	case 'w':
-		cam.AddVel(0, 0, .5);
+		gameWorld.camera.AddVel(0, 0, speed);
 		break;
 	case 's':
-		cam.AddVel(0, 0, -.5);
+		gameWorld.camera.AddVel(0, 0, -speed);
 		break;
 	case 'a':
-		cam.AddVel(-.5, 0, 0);
+		gameWorld.camera.AddVel(-speed, 0, 0);
 		break;
 	case 'd':
-		cam.AddVel(.5, 0, 0);
+		gameWorld.camera.AddVel(speed, 0, 0);
 		break;
 	/*case 'q':
 		camY--;
@@ -96,10 +78,10 @@ void keys(unsigned char key, int x, int y)
 		camY++;
 		break;*/
 	case 'z':
-		_angle--;
+		gameWorld.camera.yaw--;
 		break;
 	case 'x':
-		_angle++;
+		gameWorld.camera.yaw++;
 		break;
 	case'm':
 		break;
@@ -107,20 +89,18 @@ void keys(unsigned char key, int x, int y)
 		exit(0);
 	}
 }
-
+int oldx = screenW / 2;
+int oldy = screenH / 2;
 void mouseMove(int x, int y)
 {
-	int oldx = screenW / 2;
-	int oldy = screenH / 2;
-	int deltaX;
-	int deltaY;
-	deltaY = oldy - y;
-	deltaX = oldx - x;
-	cam.yaw -= deltaX*.25;
-	cam.pitch += deltaY*.25;
+	
+	int deltaX = oldx - x;
+	int deltaY = oldy - y;
+	gameWorld.camera.yaw -= deltaX*.25;
+	gameWorld.camera.pitch += deltaY*.25;
 	oldx = x;
 	oldy = y;
-	glutWarpPointer(screenW / 2, screenH / 2);
+	//glutWarpPointer(screenW / 2, screenH / 2);
 }
 
 int main(int argc,char**argv)
@@ -135,7 +115,7 @@ int main(int argc,char**argv)
 
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keys);
-	//glutPassiveMotionFunc(mouseMove);
+	glutPassiveMotionFunc(mouseMove);
 
 	glutMainLoop();
 	return 0;
