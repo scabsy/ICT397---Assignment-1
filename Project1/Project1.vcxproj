@@ -75,6 +75,7 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +86,7 @@
     <ClInclude Include="singleton.h" />
     <ClInclude Include="singletons.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

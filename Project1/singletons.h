@@ -1,12 +1,17 @@
 #ifndef __SINGLETONS_H
 #define __SINGLETONS_H
 
-#if _MCS_VER >= 1020
-  #pragma once
-#endif
-#include "world.h"
+#include "World.h"
+#include "OBJLoader.h"
+#include "TextureLoader.h"
 #include "singleton.h"
 typedef singleton<World> theWorld;
 #define gameWorld theWorld::Instance()
+
+typedef singleton<OBJLoader> objLoader;
+#define objLoad objLoader::Instance()
+
+typedef singleton<TextureLoader> textureLoader;
+#define texLoad textureLoader::Instance()
 
 #endif

@@ -1,7 +1,5 @@
 #include "BruteForce.h"
 
-
-
 void BruteForce::Render(void)
 {
 	unsigned char hcolor; //color of the height

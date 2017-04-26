@@ -7,7 +7,7 @@ Camera::Camera()
 {
 	size = gameWorld.terrain.getSize();
 	dArray = new unsigned char [size*size];
-	SetPos(0, 0, 0);
+	SetPos(10, 0, 10);
 	SetLA(0, 0, -1);
 	SetAcc(0, 0, 0);
 	SetVel(0, 0, 0);
@@ -20,11 +20,6 @@ Camera::Camera()
 		
 	}*/
 
-}
-
-Camera::Camera(int a)
-{
-	yaw = a;
 }
 
 Camera::Camera(vec3 *newPos)
@@ -78,7 +73,7 @@ void Camera::AddVel(float a, float b, float c)
 	vel.z += c;
 }
 
-void Camera::Update(float deltaT)
+void Camera::Update(double deltaT)
 {
 	if (yaw >= 360 || yaw <= -360)
 	{
@@ -120,16 +115,16 @@ void Camera::Update(float deltaT)
 	vel.x += accel.x*deltaT;
 	vel.y += accel.y*deltaT;
 	vel.z += accel.z*deltaT;
-
+	
 	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight(pos.x,pos.z) / 4 + 15;
+	pos.y = gameWorld.getWorldXZHeight(pos.x,pos.z) / 4 + 2;
 
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = (pos.y + sinPitch);
 	lookAt.z = (pos.z + sinYaw);
-	//cout << pos.x << " " << pos.y << " "  << pos.z << endl;
+
 	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);
 }

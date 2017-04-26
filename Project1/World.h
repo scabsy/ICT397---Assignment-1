@@ -22,7 +22,6 @@ protected:
 
 public:
 	BruteForce terrain;
-	int monkey;
 	OBJLoader obj;
 	Camera camera;
 	/*Player *player;
