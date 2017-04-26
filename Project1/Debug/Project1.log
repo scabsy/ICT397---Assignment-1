@@ -1,0 +1,5 @@
+﻿  main.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\project1\project1\world.h(49): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\project1\project1\main.cpp(119): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\project1\project1\main.cpp(120): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+  Project1.vcxproj -> D:\Documents\Uni\2017\Sem 1\ICT397 - Advanced Games Design and Programming\Assignments\1\Project1\Debug\Project1.exe
