@@ -1,5 +1,6 @@
 #include "World.h"
 
+
 World::World()
 {
 	LoadWorld();
@@ -13,12 +14,14 @@ World::World()
 World::~World()
 {
 	UnloadWorld();
+
 }
 
 void World::LoadWorld()
 {
 	terrain.setScalingFactor(1, 1, 1);
 	terrain.loadHeightfield("heightmaps/height128.raw", 128);
+	fileManager.ScriptLoad("scripts/test.lua");
 	//camera.SetTerrain(terrain);
 }
 

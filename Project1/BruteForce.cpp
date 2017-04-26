@@ -1,10 +1,12 @@
 #include "BruteForce.h"
 
+
+
 void BruteForce::Render(void)
 {
 	unsigned char hcolor; //color of the height
 	float texLeft, texBot, texTop,height;
-	float flatten = 4;
+	flatten = 4;
 
 	if (textureMapping)
 	{

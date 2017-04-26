@@ -63,8 +63,9 @@ void display(void)
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
 
-	//glTranslatef(camX, camY, camZ);
+	glTranslatef(0, 0, 0);
 	//glRotatef(-_angle, 0.0f, 1.0f, 0.0f);
+	
 
 	cam.Update();
 	gameWorld.Draw();
@@ -129,13 +130,13 @@ int main(int argc,char**argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0,0);
 	glutInitWindowSize(screenW, screenH);
-	glutCreateWindow("Height Map");
+	glutCreateWindow("Game Engine");
 	
 	init();
 
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keys);
-	//glutPassiveMotionFunc(mouseMove);
+	glutMotionFunc(mouseMove);
 
 	glutMainLoop();
 	return 0;

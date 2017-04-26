@@ -4,6 +4,7 @@
 #include "freeglut.h"
 #include "Camera.h"
 #include "BruteForce.h"
+#include "FileManager.h"
 using namespace std;
 
 class World
@@ -11,6 +12,7 @@ class World
 private:
 	int numNpcs;
 	int screenW, screenH;
+	FileManager fileManager;
 	bool gameDone;
 
 protected:
