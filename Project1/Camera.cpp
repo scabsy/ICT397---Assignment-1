@@ -33,11 +33,6 @@ Camera::Camera(vec3 *newPos)
 	pitch = 0;
 }
 
-/*void Camera::SetTerrain(BruteForce ter)
-{
-	terrain = ter;
-}*/
-
 void Camera::SetPos(float a, float b, float c)
 {
 	pos.x = a;
@@ -93,8 +88,8 @@ void Camera::Update(double deltaT)
 	float sinYaw = (float)sin(degToRad(yaw));
 	float sinPitch = (float)sin(degToRad(pitch));
 
-	float speed = vel.z*deltaT;
-	float strafespeed = vel.x*deltaT;
+	float speed = vel.z*(float)deltaT;
+	float strafespeed = vel.x*(float)deltaT;
 
 	if (speed > 15)
 		speed = 15;
@@ -107,20 +102,20 @@ void Camera::Update(double deltaT)
 
 	if (sqrt((vel.x*vel.x) + (vel.y*vel.y) + (vel.z*vel.z)) > 0)
 	{
-		accel.x = -vel.x * 1.5;
-		accel.y = -vel.y * 1.5;
-		accel.z = -vel.z * 1.5;
+		accel.x = -vel.x * 1.5f;
+		accel.y = -vel.y * 1.5f;
+		accel.z = -vel.z * 1.5f;
 	}
 
-	vel.x += accel.x*deltaT;
-	vel.y += accel.y*deltaT;
-	vel.z += accel.z*deltaT;
+	vel.x += accel.x*(float)deltaT;
+	vel.y += accel.y*(float)deltaT;
+	vel.z += accel.z*(float)deltaT;
 	
 	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight(pos.x,pos.z) / 4 + 2;
+	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 2;
 
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = (pos.y + sinPitch);

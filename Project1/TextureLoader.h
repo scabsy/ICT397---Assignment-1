@@ -3,10 +3,12 @@
 #include <fstream>
 #include <iostream>
 #include "freeglut.h"
+#include "Image.h"
 
 class TextureLoader
 {
 public:
-	GLuint LoadTexture(const char* filename, int size);
+	Image* LoadTexture(const char* filename, int w,int h);
+	Image* CreateTexture(unsigned char* data, int w, int h);
 };
 #endif

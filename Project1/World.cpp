@@ -27,7 +27,12 @@ void World::LoadWorld()
 
 void World::LoadWorldTextures()
 {
-	terrain.loadTexture("textures/grassB.raw", 1024);
+	terrain.addProceduralTexture("textures/lowestTile.raw");
+	terrain.addProceduralTexture("textures/lowTile.raw");
+	terrain.addProceduralTexture("textures/highTile.raw");
+	terrain.addProceduralTexture("textures/highestTile.raw");
+
+	terrain.createProceduralTexture();
 }
 
 void World::UnloadWorld()

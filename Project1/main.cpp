@@ -56,7 +56,7 @@ void display(void)
 
 void keys(unsigned char key, int x, int y)
 {
-	auto speed = 0.1f;
+	auto speed = 1.f;
 	switch (key)
 	{
 	case 'w':
@@ -97,7 +97,7 @@ void mouseMove(int x, int y)
 	int deltaX = oldx - x;
 	int deltaY = oldy - y;
 	gameWorld.camera.yaw -= deltaX*.25;
-	gameWorld.camera.pitch += deltaY*.25;
+	gameWorld.camera.pitch += deltaY*.25f;
 
 	oldx = x;
 	oldy = y;

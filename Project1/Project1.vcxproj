@@ -74,18 +74,22 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextureGenerator.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="singletons.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextureGenerator.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

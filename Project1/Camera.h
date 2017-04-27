@@ -34,7 +34,6 @@ public:
 	void SetAcc(float a, float b, float c);
 	void SetVel(float a, float b, float c);
 	void AddVel(float a, float b, float c);
-	//void SetTerrain(BruteForce ter);
 
 	vec3 pos;
 	vec3 lookAt;
@@ -42,8 +41,6 @@ public:
 	vec3 vel;
 	float yaw;
 	float pitch;
-
-	//BruteForce terrain;
 };
 
 #endif

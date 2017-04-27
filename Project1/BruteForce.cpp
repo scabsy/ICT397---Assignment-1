@@ -9,7 +9,7 @@ void BruteForce::Render(void)
 	if (textureMapping)
 	{
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, texture->GetID());
 	}
 	for (int z = 0; z<getSize() - 1; z++) 
 	{
