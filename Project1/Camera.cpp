@@ -5,8 +5,6 @@
 
 Camera::Camera()
 {
-	size = gameWorld.terrain.getSize();
-	dArray = new unsigned char [size*size];
 	SetPos(10, 0, 10);
 	SetLA(0, 0, -1);
 	SetAcc(0, 0, 0);
@@ -14,12 +12,8 @@ Camera::Camera()
 
 	yaw = 95;
 	pitch = 0;
-	/*for (int i = 0; i < size * size; i++)
-	{
-		dArray[i] = gameWorld.terrain.terrainData[i];
-		
-	}*/
 
+	size = 2;
 }
 
 Camera::Camera(vec3 *newPos)
@@ -31,6 +25,8 @@ Camera::Camera(vec3 *newPos)
 
 	yaw = 0;
 	pitch = 0;
+
+	size = 2;
 }
 
 void Camera::SetPos(float a, float b, float c)
@@ -118,7 +114,7 @@ void Camera::Update(double deltaT)
 	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 5;
 
 	lookAt.x = (pos.x + cosYaw);
-	lookAt.y = (pos.y + sinPitch);
+	lookAt.y = gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;//(pos.y + sinPitch);
 	lookAt.z = (pos.z + sinYaw);
 
 	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);

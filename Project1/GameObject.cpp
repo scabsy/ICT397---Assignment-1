@@ -9,7 +9,7 @@ GameObject::GameObject()
 
 	scale = 1;
 
-	model = 0;
+	//model = NULL;
 }
 
 
@@ -19,7 +19,7 @@ GameObject::GameObject(vec3 loc, float nscale)
 
 	scale = nscale;
 
-	model = 0;
+	//model = NULL;
 }
 
 GameObject::GameObject(float x, float y, float z,float nscale)
@@ -30,7 +30,7 @@ GameObject::GameObject(float x, float y, float z,float nscale)
 
 	scale = nscale;
 
-	model = 0;
+	//model = NULL;
 }
 
 GameObject::GameObject(char * nmodel, float x, float y, float z, float nscale)
@@ -78,14 +78,53 @@ void GameObject::setScale(float newScale)
 	scale = newScale;
 }
 
-void GameObject::setModel(int modelNum)
+void GameObject::setModel(Mesh modelNum)
 {
 	model = modelNum;
 }
 
+
+void GameObject::processCollision(GameObject &obj)
+{
+	if (boundingBox.checkCollison(pos, obj.boundingBox, obj.getPos()))
+	{
+		onCollision(obj);
+	}
+}
+
+
+void GameObject::processCollision(Camera &obj)
+{
+	vec3 min(obj.pos.x - obj.size, obj.pos.y - obj.size, obj.pos.z - obj.size);
+	vec3 max(obj.pos.x + obj.size, obj.pos.y + obj.size, obj.pos.z + obj.size);
+	AABB ab(min, max);
+	if (boundingBox.checkCollison(pos,ab, obj.pos))
+	{
+		onCollision(obj);
+	}
+}
+
+void GameObject::onCollision(GameObject &collisionObject)
+{
+	//code that performs actions in response to a collision.
+	cout << "collision" << endl;
+}
+
+
+void GameObject::onCollision(Camera &collisionObject)
+{
+	//code that performs actions in response to a collision.
+	cout << "collision" << endl;
+}
+
 void GameObject::render()
 {
-	glTranslatef(pos.x, gameWorld.terrain.getHeight(pos.x,pos.z)/gameWorld.terrain.getFlatten()+1, pos.z);
-	glScalef(scale,scale,scale);
-	glCallList(model);
+	//glClearColor(1.0, 0.0, 1.0, 1.0);
+	//glTranslatef(pos.x, gameWorld.terrain.getHeight(pos.x,pos.z)/gameWorld.terrain.getFlatten(), pos.z);
+	glPushMatrix();
+		glTranslatef(pos.x, pos.y, pos.z);
+		glScalef(scale,scale,scale);
+		glColor3ub(255, 10, 10);
+		glCallList(model.GetID());
+	glPopMatrix();
 }

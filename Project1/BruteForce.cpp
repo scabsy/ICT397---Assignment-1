@@ -23,18 +23,19 @@ void BruteForce::Render(void)
 
 			//create the the first point in the triangle strip
 			hcolor = getHeightColor(x, z);
-			glColor3ub(hcolor, hcolor, hcolor);
+			//glColor3ub(hcolor, hcolor, hcolor);
 			glTexCoord2f(texLeft, texBot);
 			glVertex3f((float)x*scaleX, height, (float)z*scaleZ);
 
 			height = getHeight(x, z+1) / flatten; 
 			//create the next point in the triangle strip
 			hcolor = getHeightColor(x, z + 1);
-			glColor3ub(hcolor, hcolor, hcolor);
+			//glColor3ub(hcolor, hcolor, hcolor);
 			glTexCoord2f(texLeft, texTop);
 			glVertex3f((float)x*scaleX, height, (float)(z + 1)*scaleZ);
 				
 		}
 		glEnd();
 	}
+	glDisable(GL_TEXTURE_2D);
 }

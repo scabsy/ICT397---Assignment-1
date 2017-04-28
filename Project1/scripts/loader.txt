@@ -1,1 +1,2 @@
 scripts/test1.lua
+scripts/test.lua

@@ -20,26 +20,28 @@ World::~World()
 void World::LoadWorld()
 {
 	time0 = glutGet(GLUT_ELAPSED_TIME);
-	terrain.setScalingFactor(1, 1, 1);
-	terrain.loadHeightfield("heightmaps/height128 - Copy.raw", 128);
+
+	terrain = FileMan.LoadTerrain("scripts/terrain/terrain.lua");
+	/*terrain.setScalingFactor(1, 1, 1);
+	terrain.loadHeightfield("heightmaps/height128 - Copy.raw", 128);*/
 	//terrain.loadHeightfield("heightmaps/height128.raw", 128);
 
-	monkey = FileMan.LoadGO("scripts/test.lua");
-	monkey1 = FileMan.LoadGO("scripts/test1.lua");
+	//monkey = FileMan.LoadGO("scripts/test.lua");
+	//monkey1 = FileMan.LoadGO("scripts/test1.lua");
 	//gameObjects = new GameObject[100];
-	//gameObjects = FileMan.LoadScripts();
+	gameObjects = FileMan.LoadScripts();
 
 	//camera.SetTerrain(terrain);
 }
 
 void World::LoadWorldTextures()
 {
-	terrain.addProceduralTexture("textures/lowestTile.raw");
+	/*terrain.addProceduralTexture("textures/lowestTile.raw");
 	terrain.addProceduralTexture("textures/lowTile.raw");
 	terrain.addProceduralTexture("textures/highTile.raw");
 	terrain.addProceduralTexture("textures/highestTile.raw");
 
-	terrain.createProceduralTexture();
+	terrain.createProceduralTexture();*/
 }
 
 void World::UnloadWorld()
@@ -78,7 +80,7 @@ void World::Draw()
 	GLfloat ambientColor[] = { 0.4f, 0.4f, 0.4f, 1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
-	GLfloat lightColor0[] = { 0.6f, 0.6f, 0.6f, 1.0f };
+	GLfloat lightColor0[] = { 0.9f, 0.6f, 0.6f, 1.0f };
 	GLfloat lightPos0[] = { -0.5f, 0.8f, 0.1f, 0.0f };
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
@@ -86,12 +88,13 @@ void World::Draw()
 	camera.Update(time1-time0);
 	terrain.Render();
 
-	monkey.render();
-	monkey1.render();
-	/*for (int i = 0; i < 100; i++)
+	//monkey.render();
+	//monkey1.render();
+	for (int i = 0; i < 100; i++)
 	{
 		gameObjects[i].render();
-	}*/
+		gameObjects[i].processCollision(camera);
+	}
 	
 	glutPostRedisplay();
 	glutSwapBuffers();

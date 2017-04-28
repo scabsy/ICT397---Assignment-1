@@ -3,12 +3,13 @@
 #include "World.h"
 #include "singletons.h"
 #include "Camera.h"
+#include "Input.h"
 
 //World gameWorld;
 
 using namespace std;
 
-//Camera cam;
+Input input;
 
 float _angle = 180.0f;
 
@@ -53,54 +54,14 @@ void display(void)
 	gameWorld.Draw();
 }
 
-
 void keys(unsigned char key, int x, int y)
 {
-	auto speed = 1.f;
-	switch (key)
-	{
-	case 'w':
-		gameWorld.camera.AddVel(0, 0, speed);
-		break;
-	case 's':
-		gameWorld.camera.AddVel(0, 0, -speed);
-		break;
-	case 'a':
-		gameWorld.camera.AddVel(-speed, 0, 0);
-		break;
-	case 'd':
-		gameWorld.camera.AddVel(speed, 0, 0);
-		break;
-	/*case 'q':
-		camY--;
-		break;
-	case 'e':
-		camY++;
-		break;*/
-	case 'z':
-		gameWorld.camera.yaw--;
-		break;
-	case 'x':
-		gameWorld.camera.yaw++;
-		break;
-	case'm':
-		break;
-	case 27:
-		exit(0);
-	}
+	input.keys(key, x, y);
 }
-int oldx = screenW / 2;
-int oldy = screenH / 2;
+
 void mouseMove(int x, int y)
 {	
-	int deltaX = oldx - x;
-	int deltaY = oldy - y;
-	gameWorld.camera.yaw -= deltaX*.25;
-	gameWorld.camera.pitch += deltaY*.25f;
-
-	oldx = x;
-	oldy = y;
-	//glutWarpPointer(screenW / 2, screenH / 2);
+	input.mouseMove(x, y);
 }
 
 int main(int argc,char**argv)

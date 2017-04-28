@@ -11,7 +11,7 @@ private:
 protected:
 
 public:
-	int size;
+	float size;
 	Camera();
 	Camera(vec3 *newPos);
 	unsigned char * dArray;

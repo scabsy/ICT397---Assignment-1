@@ -2,8 +2,9 @@
 
 using namespace std;
 
-int OBJLoader::loadObject(const char* filename)
+Mesh OBJLoader::loadObject(const char* filename)
 {
+	Mesh newM;
 	coord = vector<string*>();
 	vertex = vector<coordinates*>();
 	faces = vector<face*>();
@@ -13,7 +14,7 @@ int OBJLoader::loadObject(const char* filename)
 	if (!in.is_open())
 	{
 		cout << "File did not open" << endl;
-		return -1;
+		return newM;
 	}
 
 	//load file into coord vector
@@ -60,10 +61,43 @@ int OBJLoader::loadObject(const char* filename)
 
 	//draw object
 	int num;
+	float minX = 0;
+	float maxX = 0;
+	float minY = 0;
+	float maxY = 0;
+	float minZ = 0;
+	float maxZ = 0;
 	num = glGenLists(1);
 	glNewList(num, GL_COMPILE);
 	for (int i = 0; i < faces.size()-1; i++)
 	{
+		if (vertex[faces[i]->faces[0] - 1]->x < minX)
+		{
+			minX = vertex[faces[i]->faces[0] - 1]->x;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->x > maxX)
+		{
+			maxX = vertex[faces[i]->faces[0] - 1]->x;
+		}
+
+		if (vertex[faces[i]->faces[0] - 1]->y < minY)
+		{
+			minY = vertex[faces[i]->faces[0] - 1]->y;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->y > maxY)
+		{
+			maxY = vertex[faces[i]->faces[0] - 1]->y;
+		}
+
+		if (vertex[faces[i]->faces[0] - 1]->z < minZ)
+		{
+			minZ = vertex[faces[i]->faces[0] - 1]->z;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->z > maxZ)
+		{
+			maxZ = vertex[faces[i]->faces[0] - 1]->z;
+		}
+
 		if (faces[i]->four)
 		{
 			glBegin(GL_QUADS);
@@ -102,5 +136,9 @@ int OBJLoader::loadObject(const char* filename)
 		delete vertex[i];
 	}
 
-	return num;
+	cout << "min: " << minX << " max: " << maxX << endl;
+
+	newM.SetID(num);
+	newM.SetMinMax(minX, minY, minZ, maxX, maxY, maxZ);
+	return newM;
 }

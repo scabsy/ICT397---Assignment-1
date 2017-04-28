@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdio>
 #include <freeglut.h>
+#include "Mesh.h"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ private:
 	vector<face*> faces;
 	vector<coordinates*> normals;
 public:
-	int loadObject(const char* filename);
+	Mesh loadObject(const char* filename);
 };
 
 

@@ -3,6 +3,9 @@
 
 #include "vec3.h"
 #include "freeglut.h"
+#include "Mesh.h"
+#include "Camera.h"
+#include "AABB.h"
 #include <string>
 #include <iostream>
 
@@ -11,9 +14,11 @@ class GameObject
 private:
 	vec3 pos;
 	float scale;
-	int model;
+	Mesh model;
 protected:
-	
+	void onCollision(GameObject &collisionObject);
+	void onCollision(Camera &collisionObject);
+	AABB boundingBox;
 public:
 	GameObject();
 	GameObject(vec3 loc, float nscale);
@@ -34,7 +39,11 @@ public:
 	float getScale() { return scale; }
 	void setScale(float newScale);
 
-	void setModel(int modelNum);
+	void setModel(Mesh modelNum);
+	Mesh getModel() { return model; }
+
+	void processCollision(GameObject &obj);
+	void processCollision(Camera &obj);
 
 	void render();
 };
