@@ -1,10 +1,11 @@
 #pragma once
 #include <fstream>
 #include <iostream>
+#include <vector>
 #include "freeglut.h"
 #include "Camera.h"
 #include "BruteForce.h"
-#include "OBJLoader.h"
+#include "GameObject.h"
 
 using namespace std;
 
@@ -22,8 +23,10 @@ protected:
 
 public:
 	BruteForce terrain;
-	OBJLoader obj;
 	Camera camera;
+	GameObject* gameObjects;
+	GameObject monkey;
+	GameObject monkey1;
 	/*Player *player;
 	AudioSystem * audioSystem;
 	Audio *worldSound;

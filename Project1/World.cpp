@@ -1,4 +1,5 @@
 #include "World.h"
+#include "singletons.h"
 
 
 World::World()
@@ -21,6 +22,12 @@ void World::LoadWorld()
 	time0 = glutGet(GLUT_ELAPSED_TIME);
 	terrain.setScalingFactor(1, 1, 1);
 	terrain.loadHeightfield("heightmaps/height128 - Copy.raw", 128);
+	//terrain.loadHeightfield("heightmaps/height128.raw", 128);
+
+	monkey = FileMan.LoadGO("scripts/test.lua");
+	monkey1 = FileMan.LoadGO("scripts/test1.lua");
+	//gameObjects = new GameObject[100];
+	//gameObjects = FileMan.LoadScripts();
 
 	//camera.SetTerrain(terrain);
 }
@@ -79,7 +86,13 @@ void World::Draw()
 	camera.Update(time1-time0);
 	terrain.Render();
 
-
+	monkey.render();
+	monkey1.render();
+	/*for (int i = 0; i < 100; i++)
+	{
+		gameObjects[i].render();
+	}*/
+	
 	glutPostRedisplay();
 	glutSwapBuffers();
 }

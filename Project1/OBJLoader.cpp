@@ -4,6 +4,10 @@ using namespace std;
 
 int OBJLoader::loadObject(const char* filename)
 {
+	coord = vector<string*>();
+	vertex = vector<coordinates*>();
+	faces = vector<face*>();
+	normals = vector<coordinates*>();
 	//open and check file
 	ifstream in(filename);
 	if (!in.is_open())
@@ -19,8 +23,7 @@ int OBJLoader::loadObject(const char* filename)
 		in.getline(buf, 256);
 		coord.push_back(new string(buf));
 	}
-
-	cout << "Start loading" << endl;
+	in.close();
 	//convert coord vector into each of the types (vertex,normal,face)
 	for (int i = 0; i < coord.size(); i++)
 	{
@@ -53,19 +56,16 @@ int OBJLoader::loadObject(const char* filename)
 			}			
 		}
 	}
+	//in.close();
 
-	cout << "End loading" << endl;
 	//draw object
 	int num;
 	num = glGenLists(1);
 	glNewList(num, GL_COMPILE);
-	cout << "Start Drawing" << endl;
 	for (int i = 0; i < faces.size()-1; i++)
 	{
-		cout <<"Drawing"<< endl;
 		if (faces[i]->four)
 		{
-			cout <<"Drawing"<< endl;
 			glBegin(GL_QUADS);
 				glNormal3f(normals[faces[i]->face_num-1]->x, normals[faces[i]->face_num - 1]->y, normals[faces[i]->face_num - 1]->z);
 				glVertex3f(vertex[faces[i]->faces[0]-1]->x, vertex[faces[i]->faces[0] - 1]->y, vertex[faces[i]->faces[0] - 1]->z);
@@ -85,7 +85,6 @@ int OBJLoader::loadObject(const char* filename)
 		}
 	}
 	glEndList();
-	cout << "End drawing" << endl;
 	for (int i = 0; i < coord.size(); i++)
 	{
 		delete coord[i];

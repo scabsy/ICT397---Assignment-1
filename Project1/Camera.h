@@ -3,20 +3,7 @@
 #pragma once
 
 #include "Math.h"
-
-struct vec3
-{
-	vec3()
-		: x(0),
-		  y(0),
-		  z(0)
-	{
-
-	}
-	float x;
-	float y;
-	float z;
-};
+#include "vec3.h"
 
 class Camera
 {

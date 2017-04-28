@@ -115,7 +115,7 @@ void Camera::Update(double deltaT)
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 2;
+	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 5;
 
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = (pos.y + sinPitch);

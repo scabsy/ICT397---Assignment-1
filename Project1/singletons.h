@@ -4,6 +4,7 @@
 #include "World.h"
 #include "OBJLoader.h"
 #include "TextureLoader.h"
+#include "FileManager.h"
 #include "singleton.h"
 typedef singleton<World> theWorld;
 #define gameWorld theWorld::Instance()
@@ -13,5 +14,9 @@ typedef singleton<OBJLoader> objLoader;
 
 typedef singleton<TextureLoader> textureLoader;
 #define texLoad textureLoader::Instance()
+
+
+typedef singleton<FileManager> fileManager;
+#define FileMan fileManager::Instance()
 
 #endif

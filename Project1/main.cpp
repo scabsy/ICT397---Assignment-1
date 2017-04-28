@@ -92,8 +92,7 @@ void keys(unsigned char key, int x, int y)
 int oldx = screenW / 2;
 int oldy = screenH / 2;
 void mouseMove(int x, int y)
-{
-	
+{	
 	int deltaX = oldx - x;
 	int deltaY = oldy - y;
 	gameWorld.camera.yaw -= deltaX*.25;
