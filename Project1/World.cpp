@@ -20,7 +20,7 @@ void World::LoadWorld()
 {
 	time0 = glutGet(GLUT_ELAPSED_TIME);
 	terrain.setScalingFactor(1, 1, 1);
-	terrain.loadHeightfield("heightmaps/height128.raw", 128);
+	terrain.loadHeightfield("heightmaps/height128 - Copy.raw", 128);
 
 	//camera.SetTerrain(terrain);
 }
