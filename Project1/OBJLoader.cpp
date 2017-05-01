@@ -2,14 +2,19 @@
 
 using namespace std;
 
-int OBJLoader::loadObject(const char* filename)
+Mesh OBJLoader::loadObject(const char* filename)
 {
+	Mesh newM;
+	coord = vector<string*>();
+	vertex = vector<coordinates*>();
+	faces = vector<face*>();
+	normals = vector<coordinates*>();
 	//open and check file
 	ifstream in(filename);
 	if (!in.is_open())
 	{
 		cout << "File did not open" << endl;
-		return -1;
+		return newM;
 	}
 
 	//load file into coord vector
@@ -19,8 +24,7 @@ int OBJLoader::loadObject(const char* filename)
 		in.getline(buf, 256);
 		coord.push_back(new string(buf));
 	}
-
-	cout << "Start loading" << endl;
+	in.close();
 	//convert coord vector into each of the types (vertex,normal,face)
 	for (int i = 0; i < coord.size(); i++)
 	{
@@ -53,19 +57,50 @@ int OBJLoader::loadObject(const char* filename)
 			}			
 		}
 	}
+	//in.close();
 
-	cout << "End loading" << endl;
 	//draw object
 	int num;
+	float minX = 0;
+	float maxX = 0;
+	float minY = 0;
+	float maxY = 0;
+	float minZ = 0;
+	float maxZ = 0;
 	num = glGenLists(1);
 	glNewList(num, GL_COMPILE);
-	cout << "Start Drawing" << endl;
 	for (int i = 0; i < faces.size()-1; i++)
 	{
-		cout <<"Drawing"<< endl;
+
+		if (vertex[faces[i]->faces[0] - 1]->x < minX)
+		{
+			minX = vertex[faces[i]->faces[0] - 1]->x;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->x > maxX)
+		{
+			maxX = vertex[faces[i]->faces[0] - 1]->x;
+		}
+
+		if (vertex[faces[i]->faces[0] - 1]->y < minY)
+		{
+			minY = vertex[faces[i]->faces[0] - 1]->y;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->y > maxY)
+		{
+			maxY = vertex[faces[i]->faces[0] - 1]->y;
+		}
+
+		if (vertex[faces[i]->faces[0] - 1]->z < minZ)
+		{
+			minZ = vertex[faces[i]->faces[0] - 1]->z;
+		}
+		if (vertex[faces[i]->faces[0] - 1]->z > maxZ)
+		{
+			maxZ = vertex[faces[i]->faces[0] - 1]->z;
+		}
+
 		if (faces[i]->four)
 		{
-			cout <<"Drawing"<< endl;
 			glBegin(GL_QUADS);
 				glNormal3f(normals[faces[i]->face_num-1]->x, normals[faces[i]->face_num - 1]->y, normals[faces[i]->face_num - 1]->z);
 				glVertex3f(vertex[faces[i]->faces[0]-1]->x, vertex[faces[i]->faces[0] - 1]->y, vertex[faces[i]->faces[0] - 1]->z);
@@ -83,9 +118,9 @@ int OBJLoader::loadObject(const char* filename)
 				glVertex3f(vertex[faces[i]->faces[2] - 1]->x, vertex[faces[i]->faces[2] - 1]->y, vertex[faces[i]->faces[2] - 1]->z);
 			glEnd();
 		}
+
 	}
 	glEndList();
-	cout << "End drawing" << endl;
 	for (int i = 0; i < coord.size(); i++)
 	{
 		delete coord[i];
@@ -103,5 +138,7 @@ int OBJLoader::loadObject(const char* filename)
 		delete vertex[i];
 	}
 
-	return num;
+	newM.SetID(num);
+	newM.SetMinMax(minX, minY, minZ, maxX, maxY, maxZ);
+	return newM;
 }

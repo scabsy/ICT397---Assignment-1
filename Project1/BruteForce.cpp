@@ -1,7 +1,5 @@
 #include "BruteForce.h"
 
-
-
 void BruteForce::Render(void)
 {
 	unsigned char hcolor; //color of the height
@@ -11,7 +9,7 @@ void BruteForce::Render(void)
 	if (textureMapping)
 	{
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, texture->GetID());
 	}
 	for (int z = 0; z<getSize() - 1; z++) 
 	{
@@ -25,18 +23,19 @@ void BruteForce::Render(void)
 
 			//create the the first point in the triangle strip
 			hcolor = getHeightColor(x, z);
-			glColor3ub(hcolor, hcolor, hcolor);
+			//glColor3ub(hcolor, hcolor, hcolor);
 			glTexCoord2f(texLeft, texBot);
 			glVertex3f((float)x*scaleX, height, (float)z*scaleZ);
 
 			height = getHeight(x, z+1) / flatten; 
 			//create the next point in the triangle strip
 			hcolor = getHeightColor(x, z + 1);
-			glColor3ub(hcolor, hcolor, hcolor);
+			//glColor3ub(hcolor, hcolor, hcolor);
 			glTexCoord2f(texLeft, texTop);
 			glVertex3f((float)x*scaleX, height, (float)(z + 1)*scaleZ);
 				
 		}
 		glEnd();
 	}
+	glDisable(GL_TEXTURE_2D);
 }

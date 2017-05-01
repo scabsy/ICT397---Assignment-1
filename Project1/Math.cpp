@@ -9,3 +9,10 @@ double radToDeg(double radians)
 {
 	return radians * (180/PI);
 }
+
+
+int getRand(int maxNum)
+{
+	srand(time(NULL));
+	return rand() % maxNum + 1;
+}

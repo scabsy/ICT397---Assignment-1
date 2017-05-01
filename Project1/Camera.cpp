@@ -5,26 +5,17 @@
 
 Camera::Camera()
 {
-	size = gameWorld.terrain.getSize();
-	dArray = new unsigned char [size*size];
-	SetPos(0, 0, 0);
+	SetPos(10, 0, 10);
 	SetLA(0, 0, -1);
 	SetAcc(0, 0, 0);
 	SetVel(0, 0, 0);
 
 	yaw = 95;
 	pitch = 0;
-	/*for (int i = 0; i < size * size; i++)
-	{
-		dArray[i] = gameWorld.terrain.terrainData[i];
-		
-	}*/
 
-}
+	size = 2;
 
-Camera::Camera(int a)
-{
-	yaw = a;
+	isColliding = false;
 }
 
 Camera::Camera(vec3 *newPos)
@@ -36,12 +27,11 @@ Camera::Camera(vec3 *newPos)
 
 	yaw = 0;
 	pitch = 0;
-}
 
-/*void Camera::SetTerrain(BruteForce ter)
-{
-	terrain = ter;
-}*/
+	size = 2;
+
+	isColliding = false;
+}
 
 void Camera::SetPos(float a, float b, float c)
 {
@@ -73,12 +63,15 @@ void Camera::SetVel(float a, float b, float c)
 
 void Camera::AddVel(float a, float b, float c)
 {
-	vel.x += a;
-	vel.y += b;
-	vel.z += c;
+	if (!isColliding)
+	{
+		vel.x += a;
+		vel.y += b;
+		vel.z += c;
+	}
 }
 
-void Camera::Update(float deltaT)
+void Camera::Update(double deltaT)
 {
 	if (yaw >= 360 || yaw <= -360)
 	{
@@ -98,8 +91,8 @@ void Camera::Update(float deltaT)
 	float sinYaw = (float)sin(degToRad(yaw));
 	float sinPitch = (float)sin(degToRad(pitch));
 
-	float speed = vel.z*deltaT;
-	float strafespeed = vel.x*deltaT;
+	float speed = vel.z*(float)deltaT;
+	float strafespeed = vel.x*(float)deltaT;
 
 	if (speed > 15)
 		speed = 15;
@@ -112,24 +105,29 @@ void Camera::Update(float deltaT)
 
 	if (sqrt((vel.x*vel.x) + (vel.y*vel.y) + (vel.z*vel.z)) > 0)
 	{
-		accel.x = -vel.x * 1.5;
-		accel.y = -vel.y * 1.5;
-		accel.z = -vel.z * 1.5;
+		accel.x = -vel.x * 1.5f;
+		accel.y = -vel.y * 1.5f;
+		accel.z = -vel.z * 1.5f;
 	}
 
-	vel.x += accel.x*deltaT;
-	vel.y += accel.y*deltaT;
-	vel.z += accel.z*deltaT;
-
+	vel.x += accel.x*(float)deltaT;
+	vel.y += accel.y*(float)deltaT;
+	vel.z += accel.z*(float)deltaT;
+	
 	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight(pos.x,pos.z) / 4 + 15;
+	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 5;
 
 	lookAt.x = (pos.x + cosYaw);
-	lookAt.y = (pos.y + sinPitch);
+	lookAt.y = gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;//(pos.y + sinPitch);
 	lookAt.z = (pos.z + sinYaw);
-	//cout << pos.x << " " << pos.y << " "  << pos.z << endl;
+
+	/*if (pos.y < lookAt.y)
+	{
+		pos.y = lookAt.y;
+	}*/
+
 	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);
 }

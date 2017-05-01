@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdio>
 #include <freeglut.h>
+#include "Mesh.h"
 
 using namespace std;
 
@@ -39,6 +40,10 @@ struct face
 	}
 };
 
+
+/**
+* Define loader for 3d models
+*/
 class OBJLoader
 {
 private:
@@ -47,7 +52,11 @@ private:
 	vector<face*> faces;
 	vector<coordinates*> normals;
 public:
-	int loadObject(const char* filename);
+	/**
+	* @brief Loads 3D model at location
+	* @param filename - 3d model to load
+	*/
+	Mesh loadObject(const char* filename);
 };
 
 

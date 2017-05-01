@@ -44,14 +44,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\freeglutInstal\include\GL</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Lua\include\lua;$(ProjectDir)\dirent\include\dirent;$(ProjectDir)\freeglutInstal\include\GL</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\freeglutInstal\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\Lua\lib;$(ProjectDir)\freeglutInstal\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua51.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -69,22 +69,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
     <ClCompile Include="BruteForce.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextureGenerator.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="vec3.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="singletons.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextureGenerator.h" />
+    <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="vec3.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
