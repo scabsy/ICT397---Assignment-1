@@ -9,6 +9,8 @@ GameObject::GameObject()
 
 	scale = 1;
 
+	rot = getRand(360);
+
 	//model = NULL;
 }
 
@@ -18,6 +20,9 @@ GameObject::GameObject(vec3 loc, float nscale)
 	pos = loc;
 
 	scale = nscale;
+
+
+	rot = getRand(360);
 
 	//model = NULL;
 }
@@ -30,6 +35,8 @@ GameObject::GameObject(float x, float y, float z,float nscale)
 
 	scale = nscale;
 
+	rot = getRand(360);
+
 	//model = NULL;
 }
 
@@ -40,6 +47,8 @@ GameObject::GameObject(char * nmodel, float x, float y, float z, float nscale)
 	pos.z = z;
 
 	scale = nscale;
+
+	rot = getRand(360);
 
 	model = objLoad.loadObject(nmodel);
 }
@@ -101,28 +110,33 @@ void GameObject::processCollision(Camera &obj)
 	if (boundingBox.checkCollison(pos,ab, obj.pos))
 	{
 		onCollision(obj);
+		obj.isColliding = true;
+	}
+	else
+	{
+		obj.isColliding = false;
 	}
 }
 
 void GameObject::onCollision(GameObject &collisionObject)
 {
 	//code that performs actions in response to a collision.
-	cout << "collision" << endl;
+
+	cout << "collision with obj" << endl;
 }
 
 
 void GameObject::onCollision(Camera &collisionObject)
 {
 	//code that performs actions in response to a collision.
-	cout << "collision" << endl;
+	cout << "collision with camera" << endl;
 }
 
 void GameObject::render()
 {
-	//glClearColor(1.0, 0.0, 1.0, 1.0);
-	//glTranslatef(pos.x, gameWorld.terrain.getHeight(pos.x,pos.z)/gameWorld.terrain.getFlatten(), pos.z);
 	glPushMatrix();
 		glTranslatef(pos.x, pos.y, pos.z);
+		glRotatef(rot,0, 1, 0);
 		glScalef(scale,scale,scale);
 		glColor3ub(255, 10, 10);
 		glCallList(model.GetID());

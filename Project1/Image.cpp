@@ -2,7 +2,9 @@
 
 Image::Image()
 {
-
+	sizeH = 0;
+	sizeW = 0;
+	id = 0;
 }
 
 Image::~Image()

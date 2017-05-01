@@ -40,6 +40,10 @@ struct face
 	}
 };
 
+
+/**
+* Define loader for 3d models
+*/
 class OBJLoader
 {
 private:
@@ -48,6 +52,10 @@ private:
 	vector<face*> faces;
 	vector<coordinates*> normals;
 public:
+	/**
+	* @brief Loads 3D model at location
+	* @param filename - 3d model to load
+	*/
 	Mesh loadObject(const char* filename);
 };
 

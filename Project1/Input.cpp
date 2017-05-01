@@ -39,8 +39,14 @@ void Input::keys(unsigned char key, int x, int y)
 			wired = true;
 		}
 		break;
-	case 'x':
-		exit(0);
+	case'm':
+		cout << gameWorld.camera.pos.x << " " << gameWorld.camera.pos.y << " " << gameWorld.camera.pos.z << endl;
+		break;
+	case 'x':		
+		gameWorld.ended = true;
+		//getchar();
+		//exit(0);
+		break;
 	}
 }
 
@@ -54,4 +60,12 @@ void Input::mouseMove(int x, int y)
 	oldx = x;
 	oldy = y;
 	//glutWarpPointer(screenW / 2, screenH / 2);
+}
+
+void Input::mouseClicks(int button, int state, int x, int y)
+{
+	if (gameWorld.ended)
+	{
+		exit(0);
+	}
 }

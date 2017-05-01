@@ -2,6 +2,10 @@
 #define MESH_H
 
 #include <vector>
+
+/**
+*Define mesh to be used for 3d models in  scene
+*/
 class Mesh
 {
 private:

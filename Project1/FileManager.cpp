@@ -4,9 +4,11 @@ using namespace std;
 
 FileManager::FileManager(void)
 {
-
 }
-FileManager::~FileManager(void){}
+
+FileManager::~FileManager(void)
+{
+}
 
 BruteForce FileManager::LoadTerrain(const char * fileName)
 {
@@ -123,22 +125,28 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 		<< "heightMap: " << heightMap << endl;
 
 	terrain.setScalingFactor(xScale, yScale, zScale);
-	char* convert = new char[fieldText4.length() + 1];
 
+	char* convert = new char[heightMap.length() + 1];
 	memcpy(convert, heightMap.c_str(), heightMap.length() + 1);
+
+	char* converta = new char[fieldText1.length() + 1];
+	memcpy(converta, fieldText1.c_str(), fieldText1.length() + 1);
+
+	char* convertb = new char[fieldText2.length() + 1];
+	memcpy(convertb, fieldText2.c_str(), fieldText2.length() + 1);
+
+	char* convertc = new char[fieldText3.length() + 1];
+	memcpy(convertc, fieldText3.c_str(), fieldText3.length() + 1);
+
+	char* convertd = new char[fieldText4.length() + 1];
+	memcpy(convertd, fieldText4.c_str(), fieldText4.length() + 1);
+
 	terrain.loadHeightfield(convert, 128);
 
-	memcpy(convert, fieldText1.c_str(), fieldText1.length() + 1);
-	terrain.addProceduralTexture(convert);
-
-	memcpy(convert, fieldText2.c_str(), fieldText2.length() + 1);
-	terrain.addProceduralTexture(convert);
-
-	memcpy(convert, fieldText3.c_str(), fieldText3.length() + 1);
-	terrain.addProceduralTexture(convert);
-
-	memcpy(convert, fieldText4.c_str(), fieldText4.length() + 1);
-	terrain.addProceduralTexture(convert);
+	terrain.addProceduralTexture(converta);
+	terrain.addProceduralTexture(convertb);
+	terrain.addProceduralTexture(convertc);
+	terrain.addProceduralTexture(convertd);
 
 	terrain.createProceduralTexture();
 
@@ -169,17 +177,13 @@ GameObject* FileManager::LoadScripts()
 	return gos;
 }
 
-/**
- * @brief loads in model and returns model
- * @param 
- **/
 
 GameObject FileManager::LoadGO(const char * fileName)
 {	
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
 	string model;
-	int scale, x, y, z;
+	float scale, x, y, z;
 	if (luaL_dofile(L, fileName))
 	{
 		const char* err = lua_tostring(L, -1);

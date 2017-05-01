@@ -64,6 +64,10 @@ void mouseMove(int x, int y)
 	input.mouseMove(x, y);
 }
 
+void mouseClicks(int button, int state, int x, int y) {
+	input.mouseClicks(button, state, x, y);
+}
+
 int main(int argc,char**argv)
 {	
 	glutInit(&argc, argv);
@@ -77,6 +81,7 @@ int main(int argc,char**argv)
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keys);
 	glutPassiveMotionFunc(mouseMove);
+	glutMouseFunc(mouseClicks);
 
 	glutMainLoop();
 	return 0;

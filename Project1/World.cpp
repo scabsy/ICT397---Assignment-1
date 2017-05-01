@@ -5,6 +5,8 @@
 World::World()
 {
 	LoadWorld();
+	ended = false;
+	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
 }
 
 /*World::World(Camera *c)
@@ -94,6 +96,46 @@ void World::Draw()
 	{
 		gameObjects[i].render();
 		gameObjects[i].processCollision(camera);
+	}
+
+
+	if (ended)
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glOrtho(0.0, glutGet(GLUT_WINDOW_WIDTH), 0.0, glutGet(GLUT_WINDOW_HEIGHT), -1.0, 1.0);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+
+
+		glLoadIdentity();
+
+
+		glColor3f(1, 1, 1);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, groupImg->GetID());
+
+		// Draw a textured quad
+		//glTranslatef(
+		float offX = screenW + 200;
+		float offY = screenH / 2 + 200;
+		glBegin(GL_QUADS);
+			glTexCoord2f(0, 0); glVertex3f(offX, offY + 400, 0);
+			glTexCoord2f(0, 1); glVertex3f(offX, offY, 0);
+			glTexCoord2f(1, 1); glVertex3f(offX+400, offY, 0);
+			glTexCoord2f(1, 0); glVertex3f(offX+400, offY+400, 0);
+		glEnd();
+
+
+		glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+
+		glMatrixMode(GL_MODELVIEW);
 	}
 	
 	glutPostRedisplay();

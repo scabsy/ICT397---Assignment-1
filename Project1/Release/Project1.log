@@ -1,12 +1,30 @@
-﻿  BruteForce.cpp
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\BruteForce.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+﻿  AABB.cpp
+AABB.cpp(53): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+AABB.cpp(57): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+AABB.cpp(61): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+  BruteForce.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\BruteForce.h(5): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
   Camera.cpp
 Camera.cpp(2): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  FileManager.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\FileManager.h(7): fatal error C1083: Cannot open include file: 'lua.hpp': No such file or directory
+  GameObject.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\GameObject.h(5): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  Input.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\World.h(5): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
   main.cpp
 main.cpp(2): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  Mesh.cpp
   OBJLoader.cpp
 d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\OBJLoader.h(10): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  Image.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\Image.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
   Terrain.cpp
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.h(6): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  TextureGenerator.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\TextureGenerator.h(3): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  TextureLoader.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\TextureLoader.h(5): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+  vec3.cpp
   World.cpp
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\World.h(4): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\World.h(5): fatal error C1083: Cannot open include file: 'freeglut.h': No such file or directory

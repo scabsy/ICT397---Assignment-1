@@ -71,6 +71,7 @@ Mesh OBJLoader::loadObject(const char* filename)
 	glNewList(num, GL_COMPILE);
 	for (int i = 0; i < faces.size()-1; i++)
 	{
+
 		if (vertex[faces[i]->faces[0] - 1]->x < minX)
 		{
 			minX = vertex[faces[i]->faces[0] - 1]->x;
@@ -117,6 +118,7 @@ Mesh OBJLoader::loadObject(const char* filename)
 				glVertex3f(vertex[faces[i]->faces[2] - 1]->x, vertex[faces[i]->faces[2] - 1]->y, vertex[faces[i]->faces[2] - 1]->z);
 			glEnd();
 		}
+
 	}
 	glEndList();
 	for (int i = 0; i < coord.size(); i++)
@@ -135,8 +137,6 @@ Mesh OBJLoader::loadObject(const char* filename)
 	{
 		delete vertex[i];
 	}
-
-	cout << "min: " << minX << " max: " << maxX << endl;
 
 	newM.SetID(num);
 	newM.SetMinMax(minX, minY, minZ, maxX, maxY, maxZ);

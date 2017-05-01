@@ -14,6 +14,8 @@ Camera::Camera()
 	pitch = 0;
 
 	size = 2;
+
+	isColliding = false;
 }
 
 Camera::Camera(vec3 *newPos)
@@ -27,6 +29,8 @@ Camera::Camera(vec3 *newPos)
 	pitch = 0;
 
 	size = 2;
+
+	isColliding = false;
 }
 
 void Camera::SetPos(float a, float b, float c)
@@ -59,9 +63,12 @@ void Camera::SetVel(float a, float b, float c)
 
 void Camera::AddVel(float a, float b, float c)
 {
-	vel.x += a;
-	vel.y += b;
-	vel.z += c;
+	if (!isColliding)
+	{
+		vel.x += a;
+		vel.y += b;
+		vel.z += c;
+	}
 }
 
 void Camera::Update(double deltaT)
@@ -116,6 +123,11 @@ void Camera::Update(double deltaT)
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;//(pos.y + sinPitch);
 	lookAt.z = (pos.z + sinYaw);
+
+	/*if (pos.y < lookAt.y)
+	{
+		pos.y = lookAt.y;
+	}*/
 
 	gluLookAt(pos.x, pos.y, pos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);
 }
