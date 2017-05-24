@@ -8,6 +8,7 @@ Input::Input()
 	screenH = 720;
 	oldx = screenW / 2;
 	oldy = screenH / 2;
+	rotSpeed = 1200;
 }
 
 void Input::keys(unsigned char key, int x, int y)
@@ -42,23 +43,29 @@ void Input::keys(unsigned char key, int x, int y)
 	case'm':
 		cout << gameWorld.camera.pos.x << " " << gameWorld.camera.pos.y << " " << gameWorld.camera.pos.z << endl;
 		break;
-	case 'x':		
-		gameWorld.ended = true;
-		//getchar();
-		//exit(0);
+	case 'x':
+		if (!gameWorld.ended)
+			gameWorld.ended = true;
+		else
+			gameWorld.ended = false;
 		break;
 	}
 }
 
 void Input::mouseMove(int x, int y)
 {
-	int deltaX = oldx - x;
-	int deltaY = oldy - y;
-	gameWorld.camera.yaw -= deltaX*.25;
-	//gameWorld.camera.pos.y += deltaY*.05f;
+	// Warp mouse pointer to center of screen
+	if (x != screenW / 2 || y != screenH / 2)
+        glutWarpPointer(screenW / 2, screenH / 2);
 
-	oldx = x;
-	oldy = y;
+
+	int deltaX = (x - screenW / 2);
+	int deltaY = (y - screenH / 2);
+	gameWorld.camera.yaw += (deltaX * 180) / rotSpeed;
+	gameWorld.camera.pitch -= (deltaY * 180) / rotSpeed;
+
+	//oldx = x;
+	//oldy = y;
 	//glutWarpPointer(screenW / 2, screenH / 2);
 }
 

@@ -39,6 +39,10 @@ void init(void)
     GLdouble farVal  = 10000;     // near and far clipping planes
     gluPerspective(fov, aspect, nearVal, farVal);
 
+	// Center and hide cursor
+	glutWarpPointer(screenH / 2, screenW / 2);
+	glutSetCursor(GLUT_CURSOR_NONE);
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LIGHTING);

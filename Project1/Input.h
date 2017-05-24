@@ -13,6 +13,7 @@ private:
 	bool wired;
 	int oldx;
 	int oldy;
+	int rotSpeed;
 public: 
 	Input();
 	void keys(unsigned char key, int x, int y);

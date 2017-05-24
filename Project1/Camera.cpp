@@ -78,13 +78,13 @@ void Camera::Update(double deltaT)
 		yaw = 0;
 	}
 
-	if (pitch > 60)
+	if (pitch > 90)
 	{
-		pitch = 60;
+		pitch = 90;
 	}
-	if (pitch < -60)
+	if (pitch < -90)
 	{
-		pitch = -60;
+		pitch = -90;
 	}
 
 	float cosYaw = (float)cos(degToRad(yaw));
@@ -121,7 +121,7 @@ void Camera::Update(double deltaT)
 	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 5;
 
 	lookAt.x = (pos.x + cosYaw);
-	lookAt.y = gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;//(pos.y + sinPitch);
+	lookAt.y = (pos.y + sinPitch);//gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;
 	lookAt.z = (pos.z + sinYaw);
 
 	/*if (pos.y < lookAt.y)
