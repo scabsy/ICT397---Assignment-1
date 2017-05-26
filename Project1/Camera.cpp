@@ -114,6 +114,10 @@ void Camera::Update(double deltaT)
 	vel.y += accel.y*(float)deltaT;
 	vel.z += accel.z*(float)deltaT;
 	
+	prevPos.x = pos.x;
+	prevPos.y = pos.y;
+	prevPos.z = pos.z;
+
 	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;

@@ -129,6 +129,9 @@ void GameObject::onCollision(GameObject &collisionObject)
 void GameObject::onCollision(Camera &collisionObject)
 {
 	//code that performs actions in response to a collision.
+	collisionObject.pos.x = collisionObject.prevPos.x;
+	collisionObject.pos.y = collisionObject.prevPos.y;
+	collisionObject.pos.z = collisionObject.prevPos.z;
 	cout << "collision with camera" << endl;
 }
 

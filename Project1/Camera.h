@@ -70,6 +70,7 @@ public:
 	void AddVel(float a, float b, float c);
 
 	vec3 pos;/// position of camera
+	vec3 prevPos;/// previous position of camera
 	vec3 lookAt;/// focal point of camera
 	vec3 accel; /// how fast the camera increases in speed
 	vec3 vel;/// how fast the camera is moving
