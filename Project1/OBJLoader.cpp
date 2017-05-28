@@ -69,7 +69,7 @@ Mesh OBJLoader::loadObject(const char* filename)
 	float maxZ = 0;
 	num = glGenLists(1);
 	glNewList(num, GL_COMPILE);
-	for (int i = 0; i < faces.size()-1; i++)
+	for (int i = 0; i < faces.size(); i++)
 	{
 
 		if (vertex[faces[i]->faces[0] - 1]->x < minX)
