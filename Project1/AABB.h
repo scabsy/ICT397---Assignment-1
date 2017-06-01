@@ -5,17 +5,17 @@
 class AABB
 {
 private:
-   vec3 min;
-   vec3 max;
-   AABB createWorldAABB(AABB aabb,vec3 worldXYZ);
-   bool checkCollisonWithPoint(vec3 &point,AABB &aabb);
+   Vector::vec3 min;
+   Vector::vec3 max;
+   AABB createWorldAABB(AABB aabb, Vector::vec3 worldXYZ);
+   bool checkCollisonWithPoint(Vector::vec3 &point,AABB &aabb);
 
 public:
 	AABB();
-	AABB(vec3 minVals, vec3 maxVals);
-	void createAABB(vec3 vertices[], int numVertices);
-	bool checkCollisonWithPoint(vec3 &point, vec3 worldXYZ);
-    bool checkCollison(vec3 worldXYZ,AABB &aabb2, vec3 worldXYZ2);
+	AABB(Vector::vec3 minVals, Vector::vec3 maxVals);
+	void createAABB(Vector::vec3 vertices[], int numVertices);
+	bool checkCollisonWithPoint(Vector::vec3 &point, Vector::vec3 worldXYZ);
+    bool checkCollison(Vector::vec3 worldXYZ,AABB &aabb2, Vector::vec3 worldXYZ2);
 	const AABB &operator=(const AABB &aabb2);
 };
 

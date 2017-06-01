@@ -20,14 +20,14 @@ class Image
 {
 private:
 	int id;///reference for the model to be loaded in int form
-	RGB<unsigned char>* texData;/// represents the data needed for texture
+	
 	int sizeW; /// size of terrain
 	int sizeH;/// size of terrain
 
 public:
 	Image();///basic constructor
 	~Image(); /// basic destructor 
-
+	RGB<unsigned char>* texData;/// represents the data needed for texture
 	/**
 	* @breif Returns the id of the current terrain model
 	*/

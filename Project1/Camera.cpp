@@ -18,7 +18,7 @@ Camera::Camera()
 	isColliding = false;
 }
 
-Camera::Camera(vec3 *newPos)
+Camera::Camera(Vector::vec3 *newPos)
 {
 	SetPos(newPos->x,newPos->y, newPos->z);
 	SetLA(0, 0, 1);

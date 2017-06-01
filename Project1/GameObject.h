@@ -7,33 +7,42 @@
 #include "Math.h"
 #include "Camera.h"
 #include "AABB.h"
+#include "md2model.h"
 #include <string>
 #include <iostream>
-
+#include "AI.h"
+using namespace std;
 /**
 * Defines all objects in the game
 */
 class GameObject
 {
 private:
-	vec3 pos;///position of game object
+	Vector::vec3 pos;///position of game object
+	Vector::vec3 prevPos;///position of game object
 	float rot;/// rotation in game
 	float scale;/// objects scale in game
-	Mesh model;///3d model for object
+	//Mesh model;///3d model for object
+	md2model* model;///3d model for object
+	bool AICheck;
+	string aiFilename;
 protected:
 	void onCollision(GameObject &collisionObject);
 	void onCollision(Camera &collisionObject);
 	AABB boundingBox;
 public:
 	GameObject();///basic constuctor
-	GameObject(vec3 loc, float nscale);/// overload constructor
+	GameObject(Vector::vec3 loc, float nscale);/// overload constructor
 	GameObject(float x, float y, float z,float nscale); /// overload constructor
-	GameObject(char * model,float x, float y, float z, float nscale); /// overload constructor
+	GameObject(char * model,float x, float y, float z, float nscale, bool aii, string filename); /// overload constructor
+
+	bool valid;
+	bool isColliding;
 
 	/**
 	* @breif Returns the position of the game object
 	*/
-	vec3 getPos() { return pos; }
+	Vector::vec3 getPos() { return pos; }
 
 	/**
 	* @breif Returns the x position of the game object
@@ -62,7 +71,7 @@ public:
 	* @breif Sets the position of the game object
 	* @param vector containing x y z
 	*/
-	void setPosition(vec3 newPos);
+	void setPosition(Vector::vec3 newPos);
 
 	/**
 	* @breif Sets the x position of the game object
@@ -97,12 +106,12 @@ public:
 	* @breif Sets the model of the game object
 	* @param Mesh object containing the inputed model
 	*/
-	void setModel(Mesh modelNum);
+	void setModel(md2model* modelNum);
 
 	/**
 	* @breif Returns the model of the game object
 	*/
-	Mesh getModel() { return model; }
+	md2model* getModel() { return model; }
 
 	/**
 	* @breif Check for collision with the given game object
@@ -116,10 +125,17 @@ public:
 	*/
 	void processCollision(Camera &obj);
 
+	void Update(Camera &obj);
+
 	/**
 	* @breif creates the objects model in game by translating and inputing the scale information then calling methods in opengl
 	*/
-	void render();
+	void render(float deltaT);
+
+	/**
+	* @breif Returns AICheck
+	*/
+	bool hasAI();
 };
 
 #endif

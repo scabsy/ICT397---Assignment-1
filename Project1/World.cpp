@@ -7,6 +7,7 @@ World::World()
 	LoadWorld();
 	ended = false;
 	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
+	frameCounter = 0;
 }
 
 /*World::World(Camera *c)
@@ -92,12 +93,30 @@ void World::Draw()
 
 	//monkey.render();
 	//monkey1.render();
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		gameObjects[i].render();
-		gameObjects[i].processCollision(camera);
-	}
+		//if (gameObjects[i].valid)
+		//{
 
+
+		gameObjects[i].render(time1 - time0);
+		gameObjects[i].processCollision(camera);
+
+
+		gameObjects[i].Update(camera);
+		//}
+			/*frameCounter++;
+
+			if (frameCounter > 60)
+			{
+				for (int j = 0; j < 20; j++)
+				{
+					gameObjects[i].processCollision(gameObjects[j]);
+				}
+				frameCounter = 0;
+			}*/
+	}
+		
 
 	if (ended)
 	{

@@ -81,7 +81,7 @@ bool Terrain::addProceduralTexture(char* filename)
 {
 	if (tex.getNumTextures() < 4)
 	{
-		tex.addTex(filename, 512, 512);
+		tex.addTex(filename, 256, 256);
 		return true;
 	}
 	return false;
