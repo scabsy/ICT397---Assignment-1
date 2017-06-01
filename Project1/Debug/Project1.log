@@ -1,16 +1,12 @@
-﻿  GameObject.cpp
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(5): warning C4005: 'PI' : macro redefinition
-          d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\math.h(5) : see previous definition of 'PI'
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(15): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(28): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(41): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(54): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(188): warning C4305: '+=' : truncation from 'double' to 'float'
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(192): warning C4305: '-=' : truncation from 'double' to 'float'
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(197): warning C4305: '+=' : truncation from 'double' to 'float'
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(201): warning C4305: '-=' : truncation from 'double' to 'float'
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(216): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\gameobject.cpp(227): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+﻿  Terrain.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(22): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'int', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(65): warning C4244: '=' : conversion from 'float' to 'unsigned char', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(38): warning C4101: 'tmp' : unreferenced local variable
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(108): warning C4244: '=' : conversion from 'float' to 'unsigned char', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(117): warning C4244: '+=' : conversion from 'float' to 'unsigned char', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(118): warning C4244: '+=' : conversion from 'float' to 'unsigned char', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\terrain.cpp(119): warning C4244: '+=' : conversion from 'float' to 'unsigned char', possible loss of data
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
   lua51.lib(lstate.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
 AABB.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification

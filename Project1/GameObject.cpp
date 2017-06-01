@@ -183,22 +183,30 @@ void GameObject::Update(Camera &obj)
 	{
 		if (pos.x != NULL)
 		{
-			if (pos.x < obj.pos.x)
+			if ((pos.x - obj.pos.x > 10 || pos.x - obj.pos.x < -10) || (pos.z - obj.pos.z > 10 || pos.z - obj.pos.z < -10))
 			{
-				pos.x += 0.06;
-			}
-			else
-			{
-				pos.x -= 0.06;
-			}
+				model->setAnimation("stand");
+				if (pos.x < obj.pos.x)
+				{
+					pos.x += 0.03;
+				}
+				else
+				{
+					pos.x -= 0.03;
+				}
 
-			if (pos.z < obj.pos.z)
-			{
-				pos.z += 0.06;
+				if (pos.z < obj.pos.z)
+				{
+					pos.z += 0.03;
+				}
+				else
+				{
+					pos.z -= 0.03;
+				}
 			}
 			else
 			{
-				pos.z -= 0.06;
+				model->setAnimation("attak");
 			}
 
 			double dx = obj.pos.x - pos.x;

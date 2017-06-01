@@ -15,7 +15,7 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
 	string heightMap, fieldText1, fieldText2, fieldText3, fieldText4;
-	int xScale, yScale, zScale;
+	int xScale, yScale, zScale,size;
 	if (luaL_dofile(L, fileName))
 	{
 		const char* err = lua_tostring(L, -1);
@@ -33,6 +33,7 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 	{
 		heightMap = lua_tostring(L, 1);
 	}
+
 
 	lua_getglobal(L, "xScale");
 	if (!lua_isnumber(L, 2))
@@ -114,6 +115,17 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 		fieldText4 = lua_tostring(L, 8);
 	}
 
+	lua_getglobal(L, "size");
+	if (!lua_isstring(L, 9))
+	{
+		cout << "error checking string" << endl;
+		size = 128;
+	}
+	else
+	{
+		size = lua_tonumber(L, 9);
+	}
+
 	lua_close(L);
 	cout << "xScale: " << xScale << endl
 		<< "yScale: " << yScale << endl
@@ -122,7 +134,8 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 		<< "fieldText3: " << fieldText3 << endl
 		<< "fieldText2: " << fieldText2 << endl
 		<< "fieldText1: " << fieldText1 << endl
-		<< "heightMap: " << heightMap << endl;
+		<< "heightMap: " << heightMap << endl
+		<< "file xy: " << size << endl;
 
 	terrain.setScalingFactor(xScale, yScale, zScale);
 
@@ -141,7 +154,7 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 	char* convertd = new char[fieldText4.length() + 1];
 	memcpy(convertd, fieldText4.c_str(), fieldText4.length() + 1);
 
-	terrain.loadHeightfield(convert, 128);
+	terrain.loadHeightfield(convert, size);
 
 	terrain.addProceduralTexture(converta);
 	terrain.addProceduralTexture(convertb);

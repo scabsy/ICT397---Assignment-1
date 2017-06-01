@@ -403,7 +403,7 @@ md2model* md2model::load(const char *filename)
 		Vec3f scale = readVec3(input);
 		Vec3f translation = readVec3(input);
 		input.read(frame->name, 16);
-
+		cout << frame->name << endl;
 		for (int j = 0; j < numVertices; j++)
 		{
 			MD2Vertex* vertex = frame->vertices + j;
