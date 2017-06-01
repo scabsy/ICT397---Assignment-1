@@ -1,4 +1,4 @@
-#include "vec3.h"
+/*#include "vec3.h"
 
 
 vec3::vec3(float nx, float ny, float nz)
@@ -25,4 +25,4 @@ void vec3::set(float nx, float ny, float nz)
 	x = nx;
 	y = ny;
 	z = nz;
-}
+}*/

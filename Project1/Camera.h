@@ -17,7 +17,7 @@ public:
 	bool isColliding;///check if camera is colliding with other object
 	float size;
 	Camera();///basic constructor to initialize 
-	Camera(vec3 *newPos);/// overload constucto to initialize with a vector 3 given
+	Camera(Vector::vec3 *newPos);/// overload constucto to initialize with a vector 3 given
 	/**
 	* Called every frame to update the position of the camera
 	* @param cosYaw cameras left and right calculation
@@ -69,11 +69,11 @@ public:
 	*/
 	void AddVel(float a, float b, float c);
 
-	vec3 pos;/// position of camera
-	vec3 prevPos;/// previous position of camera
-	vec3 lookAt;/// focal point of camera
-	vec3 accel; /// how fast the camera increases in speed
-	vec3 vel;/// how fast the camera is moving
+	Vector::vec3 pos;/// position of camera
+	Vector::vec3 prevPos;/// previous position of camera
+	Vector::vec3 lookAt;/// focal point of camera
+	Vector::vec3 accel; /// how fast the camera increases in speed
+	Vector::vec3 vel;/// how fast the camera is moving
 	float yaw; /// vertical view
 	float pitch;/// horizontal view
 };

@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "BruteForce.h"
 #include "GameObject.h"
+#include "md2model.h"
 
 using namespace std;
 
@@ -19,6 +20,9 @@ private:
 	int screenW, screenH;
 	bool gameDone;
 
+	int frameCounter;
+
+	md2model* model;
 protected:
 	void OnAnimate(float deltaTime);
 	//void OnDraw(CCamera *camera);
@@ -29,6 +33,7 @@ public:
 	Camera camera;///player camera
 	GameObject* gameObjects; /// objects to interact with
 
+	//GameObject first;
 	/*Player *player;
 	AudioSystem * audioSystem;
 	Audio *worldSound;
@@ -68,7 +73,7 @@ public:
 	int GetNpcs() { return numNpcs; }
 	float getWorldXZHeight(int x, int z) { return terrain.getHeight(x, z); }
 
-	double time0, time1;
+	float time0, time1;
 
 	Image* groupImg;///group image
 	bool ended;///check if player has finished level

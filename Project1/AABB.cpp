@@ -8,13 +8,13 @@ AABB::AABB()
 	max.set(0,0,0);
 }
 
-AABB::AABB(vec3 minVals, vec3 maxVals)
+AABB::AABB(Vector::vec3 minVals, Vector::vec3 maxVals)
 {
 	min=minVals;
 	max=maxVals;
 }
 
-void AABB::createAABB(vec3 vertices[], int numVertices)
+void AABB::createAABB(Vector::vec3 vertices[], int numVertices)
 {
 	 for(int i=0;i<numVertices;i++)
 	 {
@@ -45,7 +45,7 @@ void AABB::createAABB(vec3 vertices[], int numVertices)
 	 }
 }
 
-AABB AABB::createWorldAABB(AABB aabb, vec3 worldXYZ)
+AABB AABB::createWorldAABB(AABB aabb, Vector::vec3 worldXYZ)
 {
     AABB worldAABB;
     float temp;
@@ -65,7 +65,7 @@ AABB AABB::createWorldAABB(AABB aabb, vec3 worldXYZ)
     return worldAABB;
 }
 
-bool AABB::checkCollisonWithPoint(vec3 &point, vec3 worldXYZ)
+bool AABB::checkCollisonWithPoint(Vector::vec3 &point, Vector::vec3 worldXYZ)
 {
      AABB worldAABB=createWorldAABB(*this,worldXYZ);
      return((point.getX()>= worldAABB.min.getX())&&(point.getX()<=worldAABB.max.getX())&&
@@ -74,18 +74,18 @@ bool AABB::checkCollisonWithPoint(vec3 &point, vec3 worldXYZ)
 }
 
 
-bool AABB::checkCollisonWithPoint(vec3 &point,AABB &aabb)
+bool AABB::checkCollisonWithPoint(Vector::vec3 &point,AABB &aabb)
 {
      return((point.getX()>= aabb.min.getX())&&(point.getX()<=aabb.max.getX())&&
 	   (point.getY()>= aabb.min.getY())&&(point.getY()<=aabb.max.getY())&&
 	   (point.getZ()>= aabb.min.getZ())&&(point.getZ()<=aabb.max.getZ()));
 }
 
-bool AABB::checkCollison(vec3 worldXYZ,AABB &aabb2, vec3 worldXYZ2)
+bool AABB::checkCollison(Vector::vec3 worldXYZ,AABB &aabb2, Vector::vec3 worldXYZ2)
 {
     AABB obj1=createWorldAABB(*this,worldXYZ);
     AABB obj2=createWorldAABB(aabb2,worldXYZ2);
-	vec3 p[8];
+	Vector::vec3 p[8];
 
 	p[0].set(obj1.min.getX(),obj1.min.getY(),obj1.min.getZ());
 	p[1].set(obj1.max.getX(),obj1.min.getY(),obj1.min.getZ());

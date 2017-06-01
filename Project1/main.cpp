@@ -76,7 +76,7 @@ int main(int argc,char**argv)
 {	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(0,0);
+	glutInitWindowPosition(400,0);
 	glutInitWindowSize(screenW, screenH);
 	glutCreateWindow("Height Map");
 	

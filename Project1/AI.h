@@ -5,8 +5,8 @@
 class AI
 {
 private:
-   vec3 pos;
-   void Position();
+	Vector::vec3 pos;
+	void Position();
 
 public:
 	AI();

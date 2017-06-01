@@ -247,12 +247,12 @@ GameObject FileManager::LoadGO(const char * fileName)
 
 	else
 	{
-		z = lua_tonumber(L, 5);
+		z = (float)lua_tonumber(L, 5);
 	}
 
 	lua_close(L);
 	cout << "Scale: " << scale << endl
-		<< "Dave: " << model << endl
+		<< "Model: " << model << endl
 		<< "X: " << x << endl
 		<< "Y: " << y << endl
 		<< "Z: " << z << endl;

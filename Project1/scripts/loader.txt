@@ -1,16 +1,2 @@
 scripts/monkey.lua
 scripts/tree (0).lua
-scripts/tree (1).lua
-scripts/tree (2).lua
-scripts/tree (3).lua
-scripts/tree (4).lua
-scripts/tree (5).lua
-scripts/tree (6).lua
-scripts/tree (7).lua
-scripts/tree (8).lua
-scripts/tree (9).lua
-scripts/tree (10).lua
-scripts/tree (11).lua
-scripts/tree (12).lua
-scripts/tree (13).lua
-scripts/tree (14).lua
