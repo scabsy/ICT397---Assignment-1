@@ -43,7 +43,7 @@ GameObject::GameObject(float x, float y, float z,float nscale)
 	//model = NULL;
 }
 
-GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale)
+GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bool aii, string filename)
 {
 	pos.x = x;
 	pos.y = y;
@@ -52,7 +52,8 @@ GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale)
 	scale = nscale;
 
 	rot = getRand(360);
-
+	AICheck = aii;
+	aiFilename = filename;
 
 	//model = objLoad.loadObject(nmodel);
 	cout << "Model: " << nmodel << endl;
@@ -178,7 +179,15 @@ void GameObject::onCollision(Camera &collisionObject)
 
 void GameObject::Update(Camera &obj)
 {
-	prevPos = pos;
+	if (AICheck == true)
+	{
+		prevPos = pos;
+		AI::ReadAIFile(aiFilename, this, obj);
+		if (isColliding)
+			pos = prevPos;
+
+	}
+	/*prevPos = pos;
 	if (!isColliding)
 	{
 		if (pos.x != NULL)
@@ -224,7 +233,7 @@ void GameObject::Update(Camera &obj)
 			rot = radToDeg(inRad);
 		}
 
-	}
+	}*/
 }
 
 void GameObject::render(float deltaT)
@@ -241,4 +250,10 @@ void GameObject::render(float deltaT)
 			model->draw();
 		glPopMatrix();
 	}
+}
+
+//Checks if this gameObject Has AI
+bool GameObject::hasAI()
+{
+	return AICheck;
 }

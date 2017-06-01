@@ -10,7 +10,8 @@
 #include "md2model.h"
 #include <string>
 #include <iostream>
-
+#include "AI.h"
+using namespace std;
 /**
 * Defines all objects in the game
 */
@@ -23,6 +24,8 @@ private:
 	float scale;/// objects scale in game
 	//Mesh model;///3d model for object
 	md2model* model;///3d model for object
+	bool AICheck;
+	string aiFilename;
 protected:
 	void onCollision(GameObject &collisionObject);
 	void onCollision(Camera &collisionObject);
@@ -31,7 +34,7 @@ public:
 	GameObject();///basic constuctor
 	GameObject(Vector::vec3 loc, float nscale);/// overload constructor
 	GameObject(float x, float y, float z,float nscale); /// overload constructor
-	GameObject(char * model,float x, float y, float z, float nscale); /// overload constructor
+	GameObject(char * model,float x, float y, float z, float nscale, bool aii, string filename); /// overload constructor
 
 	bool valid;
 	bool isColliding;
@@ -128,6 +131,11 @@ public:
 	* @breif creates the objects model in game by translating and inputing the scale information then calling methods in opengl
 	*/
 	void render(float deltaT);
+
+	/**
+	* @breif Returns AICheck
+	*/
+	bool hasAI();
 };
 
 #endif
