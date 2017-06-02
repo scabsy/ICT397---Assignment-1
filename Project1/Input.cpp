@@ -24,17 +24,30 @@ void Input::keys(unsigned char key, int x, int y)
 	}
 	switch (key)
 	{
+		
 	case 'w':
-		gameWorld.camera.AddVel(0, 0, speed);
+		if (!gameWorld.menu)
+		{
+			gameWorld.camera.AddVel(0, 0, speed);
+		}
 		break;
 	case 's':
-		gameWorld.camera.AddVel(0, 0, -speed);
+		if (!gameWorld.menu)
+		{
+			gameWorld.camera.AddVel(0, 0, -speed);
+		}
 		break;
 	case 'a':
-		gameWorld.camera.AddVel(-speed, 0, 0);
+		if (!gameWorld.menu)
+		{
+			gameWorld.camera.AddVel(-speed, 0, 0);
+		}
 		break;
 	case 'd':
-		gameWorld.camera.AddVel(speed, 0, 0);
+		if (!gameWorld.menu)
+		{
+			gameWorld.camera.AddVel(speed, 0, 0);
+		}
 		break;
 	case'k':
 		if (wired)
@@ -56,6 +69,9 @@ void Input::keys(unsigned char key, int x, int y)
 			gameWorld.ended = true;
 		else
 			gameWorld.ended = false;
+		break;
+	case'z':
+		gameWorld.menu = false;
 		break;
 	}
 }

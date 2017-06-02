@@ -1,3 +1,20 @@
-scripts/monkey.lua
-scripts/tree (0).lua
-scripts/tree (1).lua
+scripts/tank1.lua
+scripts/tris1.lua
+scripts/tris2.lua
+scripts/tris3.lua
+scripts/tris4.lua
+scripts/tris5.lua
+scripts/barrel1.lua
+scripts/barrel2.lua
+scripts/barrel3.lua
+scripts/barrel4.lua
+scripts/barrel5.lua
+scripts/barrel6.lua
+scripts/barrel7.lua
+scripts/barrel8.lua
+scripts/barrel9.lua
+scripts/barrel10.lua
+scripts/barrel11.lua
+scripts/barrel12.lua
+scripts/barrel13.lua
+scripts/barrel14.lua

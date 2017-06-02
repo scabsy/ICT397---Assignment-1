@@ -20,7 +20,7 @@ Camera::Camera()
 
 Camera::Camera(Vector::vec3 *newPos)
 {
-	SetPos(newPos->x,newPos->y, newPos->z);
+	SetPos(newPos->x, gameWorld.getWorldXZHeight(newPos->x, newPos->z) / gameWorld.terrain.getFlatten(), newPos->z);
 	SetLA(0, 0, 1);
 	SetAcc(0, 0, 0);
 	SetVel(0, 0, 0);
@@ -122,7 +122,7 @@ void Camera::Update(double deltaT)
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
 	pos.y = (float)(gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / gameWorld.terrain.getFlatten() + 1.5);
-	if (pos.y < gameWorld.GetWaterHeight() +3)
+	if (pos.y < gameWorld.GetWaterHeight() +1.5)
 	{
 		pos.y = (float)gameWorld.GetWaterHeight()+2;
 	}

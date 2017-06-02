@@ -36,7 +36,7 @@ void init(void)
     GLdouble fov	 = 90;		// degrees
     GLdouble aspect	 = 1;		// aspect ratio aspect = height/width
     GLdouble nearVal = 0.1;
-    GLdouble farVal  = 10000;     // near and far clipping planes
+    GLdouble farVal  = 500;     // near and far clipping planes
     gluPerspective(fov, aspect, nearVal, farVal);
 
 	// Center and hide cursor

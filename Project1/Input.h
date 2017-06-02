@@ -7,8 +7,8 @@
 class Input
 {
 private:
-	int screenW;
-	int screenH;
+	int screenW;///Width of screen
+	int screenH;///Height fo screen
 
 	bool wired;
 	int oldx;

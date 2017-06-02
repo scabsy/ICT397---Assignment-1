@@ -35,7 +35,6 @@ void Terrain::normaliseTerrain(unsigned char* terrainData)
 {
 	float fMin, fMax;
 	float fHeight;
-	float tmp;
 	int i;
 	fMin = terrainData[0];
 	fMax = terrainData[0];

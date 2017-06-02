@@ -1,4 +1,5 @@
 #include "AI.h"
+#include "singletons.h"
 #include <iostream>
 namespace stattt
 {
@@ -25,7 +26,7 @@ void AI::Update()
 
 void setRot(float rot)
 {
-	 stattt::a->setRot(rot);
+	stattt::a->setRot(rot);
 }
 
 float getRot()
@@ -64,6 +65,15 @@ void setPosZ(float z)
 	stattt::a->setPosZ(z);
 }
 
+void setAn(const char * anName)
+{
+	stattt::a->getModel()->setAnimation(anName);
+}
+
+void damagePlayer(float damage)
+{
+	gameWorld.SetHP(gameWorld.GetHP() - damage);
+}
 
 luabind::object getCamLoc()
 {
@@ -83,6 +93,7 @@ void AI::ReadAIFile(string filename, GameObject* ab, Camera &cam)
 	stattt::pos = cam.pos;
 	stattt::L = luaL_newstate();
 
+	//cout << "hello X: " << stattt::a->getPosX() << endl;
 	luaL_openlibs(stattt::L);
 	luabind::open(stattt::L);
 	luabind::module(stattt::L)
@@ -95,6 +106,8 @@ void AI::ReadAIFile(string filename, GameObject* ab, Camera &cam)
 			luabind::def("setPosZ", &setPosZ),
 			luabind::def("getRot", &getRot),
 			luabind::def("setRot", &setRot),
+			luabind::def("setAn", &setAn),
+			luabind::def("damagePlayer", &damagePlayer),
 			luabind::def("getCamLoc", &getCamLoc)
 		];
 	if (luaL_dofile(stattt::L, filename.c_str()))
@@ -105,4 +118,5 @@ void AI::ReadAIFile(string filename, GameObject* ab, Camera &cam)
 
 	lua_settop(stattt::L, 0);
 	lua_close(stattt::L);
+	//cout << "hello New X: " << stattt::a->getPosX() << endl;
 }

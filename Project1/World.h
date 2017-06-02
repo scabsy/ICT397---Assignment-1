@@ -23,20 +23,29 @@ private:
 
 	int frameCounter;
 
-	md2model* model;
+	Image* skytex;///Texture for skybox
+	Image* watertex;///Texture for water
+	int waterHeight;///Height of water texture
 
-	Image* skytex;
-	Image* watertex;
-	int waterHeight;
+	void DrawSkybox();///Draws skybox
+	void LoadSkybox(const char* filename);///Loads skybox texture
+	void DrawWater();///Draws water
+	void LoadWater(const char* filename, int height);///Loads water texture
+	void DrawMenu();///Draws menu on startup
+	void DrawUI();///Draws UI when playing
 
-	void DrawSkybox();
-	void LoadSkybox(const char* filename);
-	void DrawWater();
-	void LoadWater(const char* filename, int height);
+	float playerHP;///Health of player
+	float playerScore;///Time survived in game
+
+	int len; /// Integer for reading string length of UI string elements
+	string hpString; /// String for HP UI element
+	string scoreString; /// String for Score UI element
+	void * font;
 protected:
 	void OnAnimate(float deltaTime);
 	//void OnDraw(CCamera *camera);
 	void OnPrepare();
+	
 
 public:
 	BruteForce terrain;///renderer
@@ -75,17 +84,17 @@ public:
 	*/
 	void Draw();
 	void Prepare() { OnPrepare(); }
-	void FadeScreen();
-	void SetScreen(int w, int h);
 	bool IsGameDone() { return gameDone; }
 	void QuitGame() { gameDone = true; }
 	int GetNpcs() { return numNpcs; }
 	float getWorldXZHeight(int x, int z) { return terrain.getHeight(x, z); }
-
 	float time0, time1;
+	void SetHP(float hp);
+	float GetHP();
 
 	Image* groupImg;///group image
 	bool ended;///check if player has finished level
+	bool menu;///Check if menu is showing
 
 
 	int GetWaterHeight() { return waterHeight; }

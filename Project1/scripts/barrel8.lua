@@ -1,0 +1,10 @@
+model="models/barrelsB/tris.md2"
+scale=0.05
+x=134
+y=35
+z=134
+ai=true
+tag="barrel"
+ailocation="scripts/ai/badbarrelAI.lua"
+isDestroyed = false
+isAnimated = false
