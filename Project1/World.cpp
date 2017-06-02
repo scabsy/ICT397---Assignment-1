@@ -7,8 +7,9 @@ World::World()
 	LoadWorld();
 	ended = false;
 	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
-	LoadSkybox("textures/sky.raw");
 	frameCounter = 0;
+	LoadSkybox("textures/sky.raw");
+	LoadWater("textures/water.raw",3);
 }
 
 /*World::World(Camera *c)
@@ -26,6 +27,7 @@ void World::LoadWorld()
 	time0 = glutGet(GLUT_ELAPSED_TIME);
 
 	terrain = FileMan.LoadTerrain("scripts/terrain/terrain.lua");
+	terrain.setFlatten(16);
 	/*terrain.setScalingFactor(1, 1, 1);
 	terrain.loadHeightfield("heightmaps/height128 - Copy.raw", 128);*/
 	//terrain.loadHeightfield("heightmaps/height128.raw", 128);
@@ -92,7 +94,7 @@ void World::Draw()
 	camera.Update(time1-time0);
 	terrain.Render();
 	DrawSkybox();
-
+	DrawWater();
 	//monkey.render();
 	//monkey1.render();
 	for (int i = 0; i < 20; i++)
@@ -173,80 +175,106 @@ void World::SetScreen(int w, int h)
 
 }
 
+
 void World::LoadSkybox(const char* filename)
 {
 	skytex = texLoad.LoadTexture(filename, 256, 256);
 }
 
 void World::DrawSkybox()
-{	
+{
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, skytex->GetID());
 	float skySize = terrain.getSize();
 	//behind
 	glBegin(GL_POLYGON);
-		glVertex3f(0.0,0.0,0.0);
-		glTexCoord2f(0, 0);
-		glVertex3f(0.0, skySize, 0.0);
-		glTexCoord2f(0, 1);
-		glVertex3f(skySize, skySize, 0.0);
-		glTexCoord2f(1, 1);
-		glVertex3f(skySize, 0.0, 0.0);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0, 0.0, 0.0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0, skySize, 0.0);
+	glTexCoord2f(1, 1);
+	glVertex3f(skySize, skySize, 0.0);
+	glTexCoord2f(1, 0);
+	glVertex3f(skySize, 0.0, 0.0);
 	glEnd();
 	//in front
 	glBegin(GL_POLYGON);
-		glVertex3f(0.0, 0.0, skySize);
-		glTexCoord2f(0, 0);
-		glVertex3f(0.0, skySize, skySize);
-		glTexCoord2f(0, 1);
-		glVertex3f(skySize, skySize, skySize);
-		glTexCoord2f(1, 1);
-		glVertex3f(skySize, 0.0, skySize);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0, 0.0, skySize);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0, skySize, skySize);
+	glTexCoord2f(1, 1);
+	glVertex3f(skySize, skySize, skySize);
+	glTexCoord2f(1, 0);
+	glVertex3f(skySize, 0.0, skySize);
 	glEnd();
 	//left
 	glBegin(GL_POLYGON);
-		glVertex3f(skySize, 0.0, 0.0);
-		glTexCoord2f(0, 0);
-		glVertex3f(skySize, skySize, 0);
-		glTexCoord2f(0, 1);
-		glVertex3f(skySize, skySize, skySize);
-		glTexCoord2f(1, 1);
-		glVertex3f(skySize, .0, skySize);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(skySize, 0.0, 0.0);
+	glTexCoord2f(0, 1);
+	glVertex3f(skySize, skySize, 0);
+	glTexCoord2f(1, 1);
+	glVertex3f(skySize, skySize, skySize);
+	glTexCoord2f(1, 0);
+	glVertex3f(skySize, .0, skySize);
 	glEnd();
 	//right
 	glBegin(GL_POLYGON);
-		glVertex3f(0, 0.0, 0.0);
-		glTexCoord2f(0, 0);
-		glVertex3f(0, skySize, 0);
-		glTexCoord2f(0, 1);
-		glVertex3f(0, skySize, skySize);
-		glTexCoord2f(1, 1);
-		glVertex3f(0, .0, skySize);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(0, 0.0, 0.0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0, skySize, 0);
+	glTexCoord2f(1, 1);
+	glVertex3f(0, skySize, skySize);
+	glTexCoord2f(1, 0);
+	glVertex3f(0, .0, skySize);
 	glEnd();
 	//top
 	glBegin(GL_POLYGON);
-		glVertex3f(0.0, skySize, 0);
-		glTexCoord2f(0, 0);
-		glVertex3f(0.0, skySize, skySize);
-		glTexCoord2f(0, 1);
-		glVertex3f(skySize, skySize, skySize);
-		glTexCoord2f(1, 1);
-		glVertex3f(skySize, skySize, 0);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0, skySize, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0, skySize, skySize);
+	glTexCoord2f(1, 1);
+	glVertex3f(skySize, skySize, skySize);
+	glTexCoord2f(1, 0);
+	glVertex3f(skySize, skySize, 0);
 	glEnd();
 	//bottom
 	glBegin(GL_POLYGON);
-		glVertex3f(0.0, 0, 0);
-		glTexCoord2f(0, 0);
-		glVertex3f(0.0, 0, skySize);
-		glTexCoord2f(0, 1);
-		glVertex3f(skySize, 0, skySize);
-		glTexCoord2f(1, 1);
-		glVertex3f(skySize, 0, 0);
-		glTexCoord2f(1, 0);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0, 0, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0, 0, skySize);
+	glTexCoord2f(1, 1);
+	glVertex3f(skySize, 0, skySize);
+	glTexCoord2f(1, 0);
+	glVertex3f(skySize, 0, 0);
+	glEnd();
+}
+
+void World::LoadWater(const char* filename,int height)
+{
+	watertex = texLoad.LoadTexture(filename, 256, 256);
+	waterHeight = height;
+}
+
+void World::DrawWater()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, watertex->GetID());
+	float waterSize = terrain.getSize();
+	
+	//bottom
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0, waterHeight, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0, waterHeight, waterSize);
+	glTexCoord2f(1, 1);
+	glVertex3f(waterSize, waterHeight, waterSize);
+	glTexCoord2f(1, 0);
+	glVertex3f(waterSize, waterHeight, 0);
 	glEnd();
 }

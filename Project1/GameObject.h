@@ -26,6 +26,7 @@ private:
 	md2model* model;///3d model for object
 	bool AICheck;
 	string aiFilename;
+	bool destoryed;
 protected:
 	void onCollision(GameObject &collisionObject);
 	void onCollision(Camera &collisionObject);
@@ -34,10 +35,12 @@ public:
 	GameObject();///basic constuctor
 	GameObject(Vector::vec3 loc, float nscale);/// overload constructor
 	GameObject(float x, float y, float z,float nscale); /// overload constructor
-	GameObject(char * model,float x, float y, float z, float nscale, bool aii, string filename); /// overload constructor
-
+	GameObject(char * model,float x, float y, float z, float nscale, bool aii, string filename, bool destory); /// overload constructor
+	bool isDestoryed();
 	bool valid;
 	bool isColliding;
+	float getRot();
+	void setRot(float rott);
 
 	/**
 	* @breif Returns the position of the game object

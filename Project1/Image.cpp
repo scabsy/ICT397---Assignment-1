@@ -19,12 +19,12 @@ void Image::SetID(GLuint newId)
 
 RGB<unsigned char>  Image::GetColour(int x, int y)
 {
-	return texData[y*sizeH + x];
+	return texData[y*sizeW + x];
 }
 
 void Image::SetColour(int x, int y, RGB<unsigned char> rgb)
 {
-	texData[y*sizeH + x] = rgb;
+	texData[y*sizeW + x] = rgb;
 }
 
 void  Image::SetWidth(int w)

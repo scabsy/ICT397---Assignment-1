@@ -5,7 +5,7 @@
 
 Camera::Camera()
 {
-	SetPos(10, 0, 10);
+	SetPos(10, gameWorld.getWorldXZHeight(10, 10) / gameWorld.terrain.getFlatten(), 10);
 	SetLA(0, 0, -1);
 	SetAcc(0, 0, 0);
 	SetVel(0, 0, 0);
@@ -73,6 +73,7 @@ void Camera::AddVel(float a, float b, float c)
 
 void Camera::Update(double deltaT)
 {
+
 	if (yaw >= 360 || yaw <= -360)
 	{
 		yaw = 0;
@@ -114,15 +115,22 @@ void Camera::Update(double deltaT)
 	vel.y += accel.y*(float)deltaT;
 	vel.z += accel.z*(float)deltaT;
 	
-	prevPos.x = pos.x;
-	prevPos.y = pos.y;
-	prevPos.z = pos.z;
+	prevPos = pos;
 
 	pos.x += float(cos(degToRad(yaw + 90)))*strafespeed;
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / 4 + 5;
+	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / gameWorld.terrain.getFlatten() + 3;
+	if (pos.y < gameWorld.GetWaterHeight()+3)
+	{
+		pos.y = gameWorld.GetWaterHeight()+2;
+	}
+
+	if (pos.y > prevPos.y + 1.5)
+	{
+		pos = prevPos;
+	}
 
 	lookAt.x = (pos.x + cosYaw);
 	lookAt.y = (pos.y + sinPitch);//gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / 4 + 5;

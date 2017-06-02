@@ -43,8 +43,9 @@ GameObject::GameObject(float x, float y, float z,float nscale)
 	//model = NULL;
 }
 
-GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bool aii, string filename)
+GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bool aii, string filename, bool destory)
 {
+	destoryed = destory;
 	pos.x = x;
 	pos.y = y;
 	pos.z = z;
@@ -56,12 +57,10 @@ GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bo
 	aiFilename = filename;
 
 	//model = objLoad.loadObject(nmodel);
-	cout << "Model: " << nmodel << endl;
 	model = md2model::load(nmodel);
 
 	if (model != NULL)
 	{
-		cout << "texIDCon: " << model->textureID << endl;
 		model->setAnimation("attaka");
 
 		model->minVals = model->minVals*scale;
@@ -79,9 +78,6 @@ GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bo
 		model->maxVals.z = (zdif);
 
 		boundingBox = AABB(model->minVals,model->maxVals);
-		cout << model->minVals.x << " " << model->maxVals.x << endl;
-		cout << model->minVals.y << " " << model->maxVals.y << endl;
-		cout << model->minVals.z << " " << model->maxVals.z << endl;
 	}
 	valid = true;
 	isColliding = false;
@@ -241,7 +237,7 @@ void GameObject::render(float deltaT)
 	if (pos.x != NULL)
 	{
 		glPushMatrix();
-			glTranslatef(pos.x, gameWorld.getWorldXZHeight(pos.x, pos.z) / 4, pos.z);
+			glTranslatef(pos.x, gameWorld.getWorldXZHeight(pos.x, pos.z) / gameWorld.terrain.getFlatten(), pos.z);
 			glRotatef(-90, 1, 0, 0);
 			glRotatef(rot, 0,0 , 1);
 			glScalef(scale, scale, scale);
@@ -252,8 +248,23 @@ void GameObject::render(float deltaT)
 	}
 }
 
+bool GameObject::isDestoryed()
+{
+	return destoryed;
+}
+
 //Checks if this gameObject Has AI
 bool GameObject::hasAI()
 {
 	return AICheck;
+}
+
+float GameObject::getRot()
+{
+	return rot;
+}
+
+void GameObject::setRot(float rott)
+{
+	rot = rott;
 }

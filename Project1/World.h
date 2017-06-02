@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "BruteForce.h"
 #include "GameObject.h"
+#include "md2model.h"
 
 using namespace std;
 
@@ -21,9 +22,17 @@ private:
 	bool gameDone;
 
 	int frameCounter;
+
+	md2model* model;
+
 	Image* skytex;
-	void LoadSkybox(const char* filename);
+	Image* watertex;
+	int waterHeight;
+
 	void DrawSkybox();
+	void LoadSkybox(const char* filename);
+	void DrawWater();
+	void LoadWater(const char* filename, int height);
 protected:
 	void OnAnimate(float deltaTime);
 	//void OnDraw(CCamera *camera);
@@ -33,7 +42,6 @@ public:
 	BruteForce terrain;///renderer
 	Camera camera;///player camera
 	GameObject* gameObjects; /// objects to interact with
-
 	//GameObject first;
 	/*Player *player;
 	AudioSystem * audioSystem;
@@ -79,4 +87,6 @@ public:
 	Image* groupImg;///group image
 	bool ended;///check if player has finished level
 
+
+	int GetWaterHeight() { return waterHeight; }
 };

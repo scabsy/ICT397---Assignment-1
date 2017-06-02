@@ -13,7 +13,16 @@ Input::Input()
 
 void Input::keys(unsigned char key, int x, int y)
 {
-	auto speed = 1.f;
+	float speed;
+	cout << gameWorld.camera.pos.y << endl;
+	if (gameWorld.camera.pos.y < 8)
+	{
+		speed = .1f;
+	}
+	else
+	{
+		speed = .5f;
+	}
 	switch (key)
 	{
 	case 'w':

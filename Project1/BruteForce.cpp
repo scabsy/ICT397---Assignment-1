@@ -4,7 +4,6 @@ void BruteForce::Render(void)
 {
 	unsigned char hcolor; //color of the height
 	float texLeft, texBot, texTop,height;
-	flatten = 4;
 
 	if (textureMapping)
 	{

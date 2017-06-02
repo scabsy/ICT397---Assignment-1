@@ -351,7 +351,6 @@ md2model* md2model::load(const char *filename)
 	string md2Name(filename);
 	string texName(buffer);
 	string path = md2Name.substr(0, md2Name.find_last_of('/')+1);
-	cout << "Path:" << path << endl;
 	string fname;
 	if (texName.find_last_of('/')+2 >= 0)
 	{
@@ -361,10 +360,7 @@ md2model* md2model::load(const char *filename)
 	{
 		fname = texName;
 	}
-	 
-	cout << fname << endl;
 	string texFName = path + fname;
-	cout << "Texture file: " << texFName << endl;
 	Image* image = texLoad.LoadTexture(texFName.c_str(),textureWidth,textureHeight);
 	GLuint textureID = loadTexture(image);
 	delete image;
@@ -403,7 +399,6 @@ md2model* md2model::load(const char *filename)
 		Vec3f scale = readVec3(input);
 		Vec3f translation = readVec3(input);
 		input.read(frame->name, 16);
-		cout << frame->name << endl;
 		for (int j = 0; j < numVertices; j++)
 		{
 			MD2Vertex* vertex = frame->vertices + j;
@@ -445,7 +440,6 @@ md2model* md2model::load(const char *filename)
 
 	model->startFrame = 0;
 	model->endFrame = numFrames - 1;
-	cout << "TimeL: " << model->time << endl;
 	return model;
 }
 
