@@ -13,7 +13,6 @@ Input input;
 
 float _angle = 180.0f;
 
-
 int screenW = 1280;
 int screenH = 720;
 
@@ -38,10 +37,6 @@ void init(void)
     GLdouble nearVal = 0.1;
     GLdouble farVal  = 500;     // near and far clipping planes
     gluPerspective(fov, aspect, nearVal, farVal);
-
-	// Center and hide cursor
-	glutWarpPointer(screenH / 2, screenW / 2);
-	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);

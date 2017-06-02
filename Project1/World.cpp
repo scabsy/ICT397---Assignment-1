@@ -94,7 +94,7 @@ void World::Draw()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
 
-
+  
 	camera.Update(time1 - time0);
 	terrain.Render();
 	DrawSkybox();
@@ -141,11 +141,9 @@ void World::Draw()
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 
-
 		glLoadIdentity();
 
-
-		glColor3f(1, 1, 1);
+		//glColor3f(1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, groupImg->GetID());
 
