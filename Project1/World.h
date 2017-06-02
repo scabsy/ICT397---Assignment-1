@@ -24,6 +24,14 @@ private:
 	Image* skytex;
 	void LoadSkybox(const char* filename);
 	void DrawSkybox();
+
+	int playerHP;
+	float playerScore;
+
+	int len; /// Integer for reading string length of UI string elements
+	string hpString; /// String for HP UI element
+	string scoreString; /// String for Score UI element
+	void * font;
 protected:
 	void OnAnimate(float deltaTime);
 	//void OnDraw(CCamera *camera);
@@ -66,6 +74,7 @@ public:
 	* @brief all loaded files will be drawn in this method, anything that is needed in the game will be rendered here
 	*/
 	void Draw();
+	void DrawUI();
 	void Prepare() { OnPrepare(); }
 	void FadeScreen();
 	void SetScreen(int w, int h);
@@ -73,6 +82,9 @@ public:
 	void QuitGame() { gameDone = true; }
 	int GetNpcs() { return numNpcs; }
 	float getWorldXZHeight(int x, int z) { return terrain.getHeight(x, z); }
+
+	void SetHP(int hp);
+	int GetHP();
 
 	float time0, time1;
 

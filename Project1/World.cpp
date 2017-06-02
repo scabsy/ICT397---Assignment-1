@@ -9,6 +9,8 @@ World::World()
 	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
 	LoadSkybox("textures/sky.raw");
 	frameCounter = 0;
+	playerHP = 100;
+	font = GLUT_BITMAP_HELVETICA_18;
 }
 
 /*World::World(Camera *c)
@@ -90,6 +92,7 @@ void World::Draw()
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
 
 	camera.Update(time1-time0);
+	playerScore += time1-time0;
 	terrain.Render();
 	DrawSkybox();
 
@@ -118,7 +121,8 @@ void World::Draw()
 				frameCounter = 0;
 			}*/
 	}
-		
+	
+	DrawUI();
 
 	if (ended)
 	{
@@ -129,11 +133,9 @@ void World::Draw()
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 
-
 		glLoadIdentity();
 
-
-		glColor3f(1, 1, 1);
+		//glColor3f(1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, groupImg->GetID());
 
@@ -158,9 +160,56 @@ void World::Draw()
 
 		glMatrixMode(GL_MODELVIEW);
 	}
-	
+
 	glutPostRedisplay();
 	glutSwapBuffers();
+}
+
+void World::DrawUI()
+{
+	glutSetCursor(GLUT_CURSOR_NONE);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+		glLoadIdentity();
+		gluOrtho2D(0.0, 1280, 0.0, 720);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+			glLoadIdentity();
+
+			glColor3f(0.0, 0.0, 0.0);
+			glRasterPos2i(10, 690);
+			hpString = "HP: " + to_string(playerHP);
+			for (string::iterator i = hpString.begin(); i != hpString.end(); ++i)
+			{
+				char c = *i;
+				glutBitmapCharacter(font, c);
+			}
+
+			glRasterPos2i(10, 670);
+			scoreString = "Score: " + to_string((int)playerScore);
+			for (string::iterator i = scoreString.begin(); i != scoreString.end(); ++i)
+			{
+				char c = *i;
+				glutBitmapCharacter(font, c);
+			}
+
+			if (playerHP == 0)
+			{
+				glutSetCursor(GLUT_CURSOR_INHERIT);
+				glRasterPos2i(590, 340);
+				void * goFont = GLUT_BITMAP_TIMES_ROMAN_24;
+				string gameOver = "Game Over";
+				for (string::iterator i = gameOver.begin(); i != gameOver.end(); ++i)
+				{
+					char c = *i;
+					glutBitmapCharacter(goFont, c);
+				}
+			}
+
+			glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
 }
 
 void World::FadeScreen()
@@ -249,4 +298,14 @@ void World::DrawSkybox()
 		glVertex3f(skySize, 0, 0);
 		glTexCoord2f(1, 0);
 	glEnd();
+}
+
+void World::SetHP(int hp)
+{
+	playerHP = hp;
+}
+
+int World::GetHP()
+{
+	return playerHP;
 }
