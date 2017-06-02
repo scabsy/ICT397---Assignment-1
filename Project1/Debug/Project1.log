@@ -1,11 +1,8 @@
-﻿  GameObject.cpp
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(5): warning C4005: 'PI' : macro redefinition
-          c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\math.h(5) : see previous definition of 'PI'
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(15): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(28): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(41): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(54): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\31594425\downloads\ict397---assignment-1-md2-loader\ict397---assignment-1-md2-loader\project1\gameobject.cpp(244): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-  AI.cpp
-  Generating Code...
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(611,5): error MSB6003: The specified task executable "link.exe" could not be run. The process cannot access the file 'C:\Users\31594425\Downloads\ICT397---Assignment-1-md2-loader\ICT397---Assignment-1-md2-loader\Project1\Debug\link.8332-cvtres.read.1.tlog' because it is being used by another process.
+﻿  World.cpp
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(26): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(73): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(76): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(142): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(143): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\1\ict397---assignment-1\project1\world.cpp(185): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+  Project1.vcxproj -> D:\Documents\Uni\2017\Sem 1\ICT397 - Advanced Games Design and Programming\Assignments\1\ICT397---Assignment-1\Debug\Project1.exe

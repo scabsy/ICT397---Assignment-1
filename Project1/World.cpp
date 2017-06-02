@@ -7,6 +7,7 @@ World::World()
 	LoadWorld();
 	ended = false;
 	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
+	LoadSkybox("textures/sky.raw");
 	frameCounter = 0;
 }
 
@@ -90,6 +91,7 @@ void World::Draw()
 
 	camera.Update(time1-time0);
 	terrain.Render();
+	DrawSkybox();
 
 	//monkey.render();
 	//monkey1.render();
@@ -169,4 +171,82 @@ void World::FadeScreen()
 void World::SetScreen(int w, int h)
 {
 
+}
+
+void World::LoadSkybox(const char* filename)
+{
+	skytex = texLoad.LoadTexture(filename, 256, 256);
+}
+
+void World::DrawSkybox()
+{	
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, skytex->GetID());
+	float skySize = terrain.getSize();
+	//behind
+	glBegin(GL_POLYGON);
+		glVertex3f(0.0,0.0,0.0);
+		glTexCoord2f(0, 0);
+		glVertex3f(0.0, skySize, 0.0);
+		glTexCoord2f(0, 1);
+		glVertex3f(skySize, skySize, 0.0);
+		glTexCoord2f(1, 1);
+		glVertex3f(skySize, 0.0, 0.0);
+		glTexCoord2f(1, 0);
+	glEnd();
+	//in front
+	glBegin(GL_POLYGON);
+		glVertex3f(0.0, 0.0, skySize);
+		glTexCoord2f(0, 0);
+		glVertex3f(0.0, skySize, skySize);
+		glTexCoord2f(0, 1);
+		glVertex3f(skySize, skySize, skySize);
+		glTexCoord2f(1, 1);
+		glVertex3f(skySize, 0.0, skySize);
+		glTexCoord2f(1, 0);
+	glEnd();
+	//left
+	glBegin(GL_POLYGON);
+		glVertex3f(skySize, 0.0, 0.0);
+		glTexCoord2f(0, 0);
+		glVertex3f(skySize, skySize, 0);
+		glTexCoord2f(0, 1);
+		glVertex3f(skySize, skySize, skySize);
+		glTexCoord2f(1, 1);
+		glVertex3f(skySize, .0, skySize);
+		glTexCoord2f(1, 0);
+	glEnd();
+	//right
+	glBegin(GL_POLYGON);
+		glVertex3f(0, 0.0, 0.0);
+		glTexCoord2f(0, 0);
+		glVertex3f(0, skySize, 0);
+		glTexCoord2f(0, 1);
+		glVertex3f(0, skySize, skySize);
+		glTexCoord2f(1, 1);
+		glVertex3f(0, .0, skySize);
+		glTexCoord2f(1, 0);
+	glEnd();
+	//top
+	glBegin(GL_POLYGON);
+		glVertex3f(0.0, skySize, 0);
+		glTexCoord2f(0, 0);
+		glVertex3f(0.0, skySize, skySize);
+		glTexCoord2f(0, 1);
+		glVertex3f(skySize, skySize, skySize);
+		glTexCoord2f(1, 1);
+		glVertex3f(skySize, skySize, 0);
+		glTexCoord2f(1, 0);
+	glEnd();
+	//bottom
+	glBegin(GL_POLYGON);
+		glVertex3f(0.0, 0, 0);
+		glTexCoord2f(0, 0);
+		glVertex3f(0.0, 0, skySize);
+		glTexCoord2f(0, 1);
+		glVertex3f(skySize, 0, skySize);
+		glTexCoord2f(1, 1);
+		glVertex3f(skySize, 0, 0);
+		glTexCoord2f(1, 0);
+	glEnd();
 }
