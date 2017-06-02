@@ -4,7 +4,7 @@
 
 #include "Math.h"
 #include "vec3.h"
-
+#include "AABB.h"
 /**
 *Define players camera
 */
@@ -15,9 +15,10 @@ protected:
 
 public:
 	bool isColliding;///check if camera is colliding with other object
-	float size;
+	float size;///Size of the camera in the world
 	Camera();///basic constructor to initialize 
 	Camera(Vector::vec3 *newPos);/// overload constucto to initialize with a vector 3 given
+	AABB aabb;///Collison box
 	/**
 	* Called every frame to update the position of the camera
 	* @param cosYaw cameras left and right calculation

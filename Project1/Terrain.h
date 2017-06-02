@@ -82,7 +82,7 @@ class Terrain
 		* @brief adds procedural texture to the terrain data to be used for terrain generation
 		* @param filename of the .raw to be used as the texture for generation of terrain
 		*/
-		bool addProceduralTexture(char* filename);
+		bool addProceduralTexture(char* filename,int size);
 
 		/**
 		* @brief returns true if all proceduralTextures are there to be used for generation

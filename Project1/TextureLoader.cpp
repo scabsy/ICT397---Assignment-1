@@ -50,17 +50,17 @@ Image* TextureLoader::LoadTexture(const char* filename, int w,int h)
 	int counter = 0;
 	for (int i = 0; i < w*h; i += 3)
 	{
-		RGB<unsigned char> val = { data[i], data[i+1], data[i+2] };
+		RGB<unsigned char> val = { data[i], data[i + 1], data[i + 2] };
 		rgbData[counter].set(val);
 		counter++;
-	}	
+	}
 
 	newImg->SetID(texture);
 	newImg->SetWidth(w);
 	newImg->SetHeight(h);
 	newImg->SetData(rgbData);
 
-// free buffer
+	// free buffer
 	free(data);
 	return newImg;
 }

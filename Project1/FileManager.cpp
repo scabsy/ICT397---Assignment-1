@@ -1,4 +1,5 @@
 #include "FileManager.h"
+#include "singletons.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
 	string heightMap, fieldText1, fieldText2, fieldText3, fieldText4;
-	int xScale, yScale, zScale,size;
+	int xScale, yScale, zScale,mapsize,texsize;
 	if (luaL_dofile(L, fileName))
 	{
 		const char* err = lua_tostring(L, -1);
@@ -115,15 +116,25 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 		fieldText4 = lua_tostring(L, 8);
 	}
 
-	lua_getglobal(L, "size");
+	lua_getglobal(L, "mapsize");
 	if (!lua_isstring(L, 9))
 	{
 		cout << "error checking string" << endl;
-		size = 128;
+		mapsize = 128;
 	}
 	else
 	{
-		size = lua_tonumber(L, 9);
+		mapsize = lua_tonumber(L, 9);
+	}
+	lua_getglobal(L, "texsize");
+	if (!lua_isstring(L, 10))
+	{
+		cout << "error checking string" << endl;
+		texsize = 256;
+	}
+	else
+	{
+		texsize = lua_tonumber(L, 10);
 	}
 
 	lua_close(L);
@@ -135,7 +146,7 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 		<< "fieldText2: " << fieldText2 << endl
 		<< "fieldText1: " << fieldText1 << endl
 		<< "heightMap: " << heightMap << endl
-		<< "file xy: " << size << endl;
+		<< "file xy: " << mapsize << endl;
 
 	terrain.setScalingFactor(xScale, yScale, zScale);
 
@@ -154,12 +165,12 @@ BruteForce FileManager::LoadTerrain(const char * fileName)
 	char* convertd = new char[fieldText4.length() + 1];
 	memcpy(convertd, fieldText4.c_str(), fieldText4.length() + 1);
 
-	terrain.loadHeightfield(convert, size);
+	terrain.loadHeightfield(convert, mapsize);
 
-	terrain.addProceduralTexture(converta);
-	terrain.addProceduralTexture(convertb);
-	terrain.addProceduralTexture(convertc);
-	terrain.addProceduralTexture(convertd);
+	terrain.addProceduralTexture(converta, texsize);
+	terrain.addProceduralTexture(convertb, texsize);
+	terrain.addProceduralTexture(convertc, texsize);
+	terrain.addProceduralTexture(convertd, texsize);
 
 	terrain.createProceduralTexture();
 
@@ -192,13 +203,15 @@ GameObject* FileManager::LoadScripts()
 
 
 GameObject FileManager::LoadGO(const char * fileName)
-{	
+{
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
 	string model;
 	float scale, x, y, z;
 	bool checkAI;
 	string aiFileLoc;
+	bool isDestroyed, isAnimated = false;
+	string tag;
 
 	if (luaL_dofile(L, fileName))
 	{
@@ -206,7 +219,7 @@ GameObject FileManager::LoadGO(const char * fileName)
 		cout << err << endl;
 	}
 
-	lua_settop(L,0);
+	lua_settop(L, 0);
 	lua_getglobal(L, "model");
 	if (!lua_isstring(L, 1))
 	{
@@ -275,33 +288,66 @@ GameObject FileManager::LoadGO(const char * fileName)
 	}
 	else
 	{
-
 		checkAI = lua_toboolean(L, 6);
-		lua_getglobal(L, "ailocation");
-		if (!lua_isstring(L, 7))
-		{
-			cout << "error checking location" << endl << "No file location found" << endl;
-			aiFileLoc = "No Location";
-		}
-		else
-		{
-			aiFileLoc = lua_tostring(L, 7);
-		}
+	}
+	lua_getglobal(L, "ailocation");
+	if (!lua_isstring(L, 7))
+	{
+		cout << "error checking location" << endl << "No file location found" << endl;
+		aiFileLoc = "No Location";
+	}
+	else
+	{
+		aiFileLoc = lua_tostring(L, 7);
+	}
+
+	lua_getglobal(L, "isDestoryed");
+	if (!lua_isboolean(L, 8))
+	{
+		cout << "error checking boolean" << endl << "Default isDestoryed is false" << endl;
+		isDestroyed = false;
+	}
+	else
+	{
+		isDestroyed = lua_toboolean(L, 8);
+	}
+
+	lua_getglobal(L, "tag");
+	if (!lua_isstring(L, 9))
+	{
+		cout << "error checking string" << endl << "Default tag is 'none'" << endl;
+		tag = "none";
+	}
+	else
+	{
+		tag = lua_tostring(L, 9);
+	}
+	lua_getglobal(L, "isAnimated");
+	if (!lua_isboolean(L, 10))
+	{
+		cout << "error checking boolean" << endl << "Default isAnimated is false" << endl;
+		isAnimated = false;
+	}
+	else
+	{
+		isAnimated = lua_toboolean(L, 10);
 	}
 
 	lua_close(L);
-	cout << "Scale: " << scale << endl
+	cout << endl << endl << "Scale: " << scale << endl
 		<< "Model: " << model << endl
 		<< "X: " << x << endl
 		<< "Y: " << y << endl
 		<< "Z: " << z << endl
+		<< "Tag: " << tag << endl
+		<< "isDestroyed: " << isDestroyed << endl
 		<< "AI: " << checkAI << endl
-		<< "AI Location: " << aiFileLoc << endl;
-	
+		<< "AI Location: " << aiFileLoc << endl << endl << endl;
+
 	char* newM = new char[model.length() + 1];
 	memcpy(newM, model.c_str(), model.length() + 1);
 
-	GameObject newGO(newM, x, y, z, scale, checkAI, aiFileLoc);
+	GameObject newGO(newM, x, y, z, scale, checkAI, aiFileLoc, isDestroyed, tag, isAnimated);
 	return newGO;
 }
 
@@ -325,4 +371,46 @@ void FileManager::ModelLoad(const char * fileName)
 
 	lua_close(L);
 	cout << pos << endl;
+}
+
+
+Camera FileManager::LoadCam()
+{
+	lua_State *L = luaL_newstate();
+	luaL_openlibs(L);
+	string heightMap, fieldText1, fieldText2, fieldText3, fieldText4;
+	float x, y, z;
+	if (luaL_dofile(L, "scripts/camera.lua"))
+	{
+		const char* err = lua_tostring(L, -1);
+		cout << err << endl;
+	}
+
+	lua_settop(L, 0);
+	lua_getglobal(L, "x");
+	if (!lua_isnumber(L, 1))
+	{
+		cout << "error checking x" << endl;
+		x =0;
+	}
+	else
+	{
+		x = lua_tonumber(L, 1);
+	}
+
+	lua_getglobal(L, "z");
+	if (!lua_isnumber(L, 2))
+	{
+		cout << "error checking z" << endl;
+		z = 0;
+	}
+	else
+	{
+		z = lua_tonumber(L, 2);
+	}
+
+
+	lua_close(L);
+
+	return Camera(new Vector::vec3(x, 0, z));
 }

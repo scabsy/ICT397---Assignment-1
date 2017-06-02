@@ -6,6 +6,8 @@
 #include <iostream>
 #include "lua.hpp"
 #include "GameObject.h"
+#include "Camera.h"
+#include "vec3.h"
 #include "BruteForce.h"
 #include <vector>
 
@@ -44,13 +46,14 @@ public:
 
 	/*
 	* Loads in LUA scripts to return a new GameObject
-	* @param model is a string that is the location of the raw file to be used
-	* @param scale a int that ditactes the scale of said gameobject
-	* @param x is the location of the x axis
-	* @param y is the location of the y axis
-	* @param z is the location of the z axis
+	* @param filename - path of LUA script containing the information to load
 	*/
 	GameObject LoadGO(const char * fileName);
+
+	/*
+	* Loads in Camera LUA scripts to return a new Camera
+	*/
+	Camera LoadCam();
 };
 
 #endif

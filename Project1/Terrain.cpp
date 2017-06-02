@@ -35,7 +35,6 @@ void Terrain::normaliseTerrain(unsigned char* terrainData)
 {
 	float fMin, fMax;
 	float fHeight;
-	float tmp;
 	int i;
 	fMin = terrainData[0];
 	fMax = terrainData[0];
@@ -77,11 +76,11 @@ void Terrain::loadTexture(char *filename, const int w, const int h)
 }
 
 
-bool Terrain::addProceduralTexture(char* filename)
+bool Terrain::addProceduralTexture(char* filename,int size)
 {
 	if (tex.getNumTextures() < 4)
 	{
-		tex.addTex(filename, 256, 256);
+		tex.addTex(filename, size, size);
 		return true;
 	}
 	return false;
@@ -91,7 +90,6 @@ bool Terrain::createProceduralTexture()
 {
 	if (!terrainData || tex.getNumTextures() == 0)
 	{
-		cout << "vcdfa" << endl;
 		return false;
 	}
 	unsigned char curHeight; //current height in the heightmap
@@ -113,7 +111,7 @@ bool Terrain::createProceduralTexture()
 					unsigned int texX = x;
 					unsigned int texZ = z;
 					getTexCoords(i,texX, texZ);
-					color = tex.getColour(i, texX, texZ);
+					color = tex.getColour(i, texX/size*tex.getTexWidth(i), texZ / size*tex.getTexWidth(i));
 					totalColor.r += color.r*weight;
 					totalColor.g += color.g*weight;
 					totalColor.b += color.b*weight;

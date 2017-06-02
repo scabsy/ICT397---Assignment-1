@@ -2,8 +2,6 @@
 #include "singletons.h"
 #include "math.h"
 
-#define PI 3.14159265
-
 GameObject::GameObject()
 {
 	pos.x = 0;
@@ -12,7 +10,9 @@ GameObject::GameObject()
 
 	scale = 1;
 
-	rot = getRand(360);
+	valid = false;
+	rot = (float)getRand(360);
+	isAnimated = false;
 
 	//model = NULL;
 }
@@ -25,7 +25,7 @@ GameObject::GameObject(Vector::vec3 loc, float nscale)
 	scale = nscale;
 
 
-	rot = getRand(360);
+	rot = (float)getRand(360);
 
 	//model = NULL;
 }
@@ -38,19 +38,23 @@ GameObject::GameObject(float x, float y, float z,float nscale)
 
 	scale = nscale;
 
-	rot = getRand(360);
+	rot = (float)getRand(360);
 
 	//model = NULL;
 }
 
-GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bool aii, string filename)
+GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bool aii, string filename, bool destory, string t, bool isAnimated)
 {
+	destoryed = destory;
 	pos.x = x;
 	pos.y = y;
 	pos.z = z;
-
+	tag = t;
 	scale = nscale;
 
+	isMoving = true;
+
+	this->isAnimated = isAnimated;
 	rot = getRand(360);
 	AICheck = aii;
 	aiFilename = filename;
@@ -62,6 +66,7 @@ GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bo
 	if (model != NULL)
 	{
 		cout << "texIDCon: " << model->textureID << endl;
+		
 		model->setAnimation("attaka");
 
 		model->minVals = model->minVals*scale;
@@ -78,14 +83,15 @@ GameObject::GameObject(char* nmodel, float x, float y, float z, float nscale, bo
 		model->minVals.z = -(zdif);
 		model->maxVals.z = (zdif);
 
-		boundingBox = AABB(model->minVals,model->maxVals);
+		boundingBox = AABB(model->minVals, model->maxVals);
 		cout << model->minVals.x << " " << model->maxVals.x << endl;
 		cout << model->minVals.y << " " << model->maxVals.y << endl;
 		cout << model->minVals.z << " " << model->maxVals.z << endl;
+		valid = true;
 	}
-	valid = true;
 	isColliding = false;
 }
+
 
 void GameObject::setPosition(float x, float y, float z)
 {
@@ -129,6 +135,14 @@ void GameObject::setModel(md2model* modelNum)
 
 void GameObject::processCollision(GameObject &obj)
 {
+	//Vector::vec3 min2(obj.pos.x + obj.model->minVals.x*scale, obj.pos.y + obj.model->minVals.y, obj.pos.z + obj.model->minVals.z*scale);
+	//Vector::vec3 max2(obj.pos.x + obj.model->maxVals.x*scale, obj.pos.y + obj.model->maxVals.y, obj.pos.z + obj.model->maxVals.z*scale);
+	//boundingBox.setMin(min2);
+	//boundingBox.setMax(max2);
+	//Vector::vec3 min2(pos.x + model->minVals.x*scale, pos.y + model->minVals.y, pos.z + model->minVals.z*scale);
+	//Vector::vec3 max2(pos.x + model->maxVals.x*scale, pos.y + model->maxVals.y, pos.z + model->maxVals.z*scale);
+	//boundingBox.setMin(min2);
+	//boundingBox.setMax(max2);
 
 	if (boundingBox.checkCollison(pos, obj.boundingBox, obj.getPos()))
 	{
@@ -144,10 +158,16 @@ void GameObject::processCollision(GameObject &obj)
 
 void GameObject::processCollision(Camera &obj)
 {
-	Vector::vec3 min(obj.pos.x - obj.size, obj.pos.y - obj.size, obj.pos.z - obj.size);
-	Vector::vec3 max(obj.pos.x + obj.size, obj.pos.y + obj.size, obj.pos.z + obj.size);
-	AABB ab(min, max);
-	if (boundingBox.checkCollison(pos,ab, obj.pos))
+	Vector::vec3 min1(obj.pos.x - obj.size, obj.pos.y - obj.size, obj.pos.z - obj.size);
+	Vector::vec3 max1(obj.pos.x + obj.size, obj.pos.y + obj.size, obj.pos.z + obj.size);
+	obj.aabb.setMin(min1);// = AABB(min1, max1);
+	obj.aabb.setMax(max1);
+	Vector::vec3 min2(pos.x + model->minVals.x*scale, pos.y + model->minVals.y*scale, pos.z + model->minVals.z*scale);
+	Vector::vec3 max2(pos.x + model->maxVals.x*scale, pos.y + model->maxVals.y*scale, pos.z + model->maxVals.z*scale);
+	boundingBox.setMin(min2);
+	boundingBox.setMax(max2);
+
+	if (boundingBox.checkCollison(pos,obj.aabb, obj.pos))
 	{
 		onCollision(obj);
 		obj.isColliding = true;
@@ -183,77 +203,69 @@ void GameObject::Update(Camera &obj)
 	{
 		prevPos = pos;
 		AI::ReadAIFile(aiFilename, this, obj);
-		if (isColliding)
-			pos = prevPos;
-
 	}
-	/*prevPos = pos;
-	if (!isColliding)
-	{
-		if (pos.x != NULL)
-		{
-			if ((pos.x - obj.pos.x > 10 || pos.x - obj.pos.x < -10) || (pos.z - obj.pos.z > 10 || pos.z - obj.pos.z < -10))
-			{
-				model->setAnimation("stand");
-				if (pos.x < obj.pos.x)
-				{
-					pos.x += 0.03;
-				}
-				else
-				{
-					pos.x -= 0.03;
-				}
-
-				if (pos.z < obj.pos.z)
-				{
-					pos.z += 0.03;
-				}
-				else
-				{
-					pos.z -= 0.03;
-				}
-			}
-			else
-			{
-				model->setAnimation("attak");
-			}
-
-			double dx = obj.pos.x - pos.x;
-			double dz = obj.pos.z -pos.z;
-			double inRad(atan2(dz, dx));
-			if (inRad < 0)
-			{
-				inRad = abs(inRad);
-			}
-			else
-			{
-				inRad = 2 * PI - inRad;
-			}
-
-			rot = radToDeg(inRad);
-		}
-
-	}*/
 }
 
 void GameObject::render(float deltaT)
 {
 	if (pos.x != NULL)
 	{
+		pos.y = gameWorld.getWorldXZHeight((int)pos.x, (int)pos.z) / gameWorld.terrain.getFlatten() + ((model->maxVals.y - model->minVals.y) / 2);
 		glPushMatrix();
-			glTranslatef(pos.x, gameWorld.getWorldXZHeight(pos.x, pos.z) / 4, pos.z);
+			glTranslatef(pos.x, pos.y, pos.z);
 			glRotatef(-90, 1, 0, 0);
 			glRotatef(rot, 0,0 , 1);
 			glScalef(scale, scale, scale);
 			glColor3ub(255, 10, 10);
-			model->advance(deltaT/3);
+			if (isAnimated)
+				model->advance(deltaT/3);
 			model->draw();
 		glPopMatrix();
 	}
+}
+
+bool GameObject::isDestoryed()
+{
+	return destoryed;
 }
 
 //Checks if this gameObject Has AI
 bool GameObject::hasAI()
 {
 	return AICheck;
+}
+
+float GameObject::getRot()
+{
+	return rot;
+}
+
+void GameObject::setRot(float rott)
+{
+	rot = rott;
+}
+
+void GameObject::setIsMoving(bool move)
+{
+	isMoving = move;
+}
+
+bool GameObject::getIsMoving()
+{
+	return isMoving;
+}
+
+string GameObject::getTag()
+{
+	return tag;
+}
+
+void GameObject::setTag(string t)
+{
+	tag = t;
+}
+
+bool GameObject::getAnimation()
+{
+	return isAnimated;
 }

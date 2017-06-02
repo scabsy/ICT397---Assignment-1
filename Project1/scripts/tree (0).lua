@@ -1,5 +1,5 @@
-model="models/monsters/brain/tris.md2"
+model="models/barrels/tris.md2"
 scale=0.05
-x=5
+x=45
 y=35
-z=15
+z=45

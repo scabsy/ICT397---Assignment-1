@@ -35,28 +35,48 @@ struct MD2Triangle
 class md2model
 {
 private:
-	MD2Frame* frames;
-	int numFrames;
-	MD2TexCoord *texCoords;
-	MD2Triangle *triangles;
-	int numTriangles;
+	MD2Frame* frames;///each frame in animation
+	int numFrames;///Number of total frames
+	MD2TexCoord *texCoords;///Texture coordinates
+	MD2Triangle *triangles;///coordinates for each triangle
+	int numTriangles;///number of triangles
 
-	int startFrame;
-	int endFrame;
+	int startFrame;///Start frame of current animation
+	int endFrame;///End frame of current animation
 
-
+	/**
+	* @brief Initialised MD2Model
+	*/
 	md2model();
 public:
-	~md2model();
-	float time;
-	GLuint textureID;
+	~md2model();///Deletes pointers on destroy
+	float time;///percentage value of animation between 0 and 1
+	GLuint textureID;///ID of texture
+
+	/**
+	*@brief Sets current animation to name
+	*@param name - name of the animation to be set
+	*/
 	void setAnimation(const char *name);
 
+	/**
+	*@brief Move the state of the animation forward by dt
+	*@param dt - time passed since last advancement
+	*/
 	void advance(float dt);
+
+	/**
+	*@brief draws the model to the screen
+	*/
 	void draw();
+
+	/**
+	*@brief Load a model and returns a md2model
+	*@param filename - path of model to load
+	*/
 	static md2model* load(const char *filename);
 
-	Vector::vec3 minVals;
-	Vector::vec3 maxVals;
+	Vector::vec3 minVals;///minimum values of model
+	Vector::vec3 maxVals;///maximum values of model
 };
 #endif // !MD2MODEL_H

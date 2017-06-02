@@ -50,6 +50,16 @@ namespace Vector
 			newVec.z = z*scale;
 			return newVec;
 		}
+
+		vec3 operator / (const float scale)const
+		{
+			vec3 newVec;
+			newVec.x = x/scale;
+			newVec.y = y/scale;
+			newVec.z = z/scale;
+			return newVec;
+		}
+
 	};
 }
 

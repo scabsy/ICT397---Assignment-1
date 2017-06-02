@@ -29,23 +29,23 @@ public:
 	~Image(); /// basic destructor 
 	RGB<unsigned char>* texData;/// represents the data needed for texture
 	/**
-	* @breif Returns the id of the current terrain model
+	* @brief Returns the id of the current terrain model
 	*/
 	int GetID() { return id; }
 
 	/**
-	* @breif Sets the id for the model to be used
+	* @brief Sets the id for the model to be used
 	* @param int reperestents a new ID
 	*/
 	void SetID(GLuint newId);
 
 	/**
-	* @breif Returns the color of the image
+	* @brief Returns the color of the image
 	*/
 	RGB<unsigned char> GetColour(int x, int y);
 
 	/**
-	* @breif Sets the color for the model to be used
+	* @brief Sets the color for the model to be used
 	* @param x, positon x
 	* @param y, position y
 	* @param RGB, color of image
@@ -53,29 +53,29 @@ public:
 	void SetColour(int x, int y,RGB<unsigned char> rgb);
 
 	/**
-	* @breif Returns the width of the image
+	* @brief Returns the width of the image
 	*/
 	int GetWidth() { return sizeW; }
 
 	/**
-	* @breif Returns the height of the image
+	* @brief Returns the height of the image
 	*/
 	int GetHeight() { return sizeH; }
 
 	/**
-	* @breif Sets the width of the image
+	* @brief Sets the width of the image
 	* @param int w is width
 	*/
 	void SetWidth(int w);
 
 	/**
-	* @breif Sets the height of the image
+	* @brief Sets the height of the image
 	* @param int h is height
 	*/
 	void SetHeight(int h);
 
 	/**
-	* @breif Sets the color and data of the image
+	* @brief Sets the color and data of the image
 	* @param RGB is the color
 	*/
 	void SetData(RGB<unsigned char>* newData);

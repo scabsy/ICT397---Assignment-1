@@ -16,6 +16,7 @@ private:
 
 public:	
 	int getFlatten() {return flatten;};///return flatten
+	void setFlatten(int a) { flatten = a; }
 	void Render(void);///draws terrain
 	BruteForce(void){};
 	~BruteForce(void){};
