@@ -121,10 +121,10 @@ void Camera::Update(double deltaT)
 	pos.z += float(sin(degToRad(yaw + 90)))*strafespeed;
 	pos.x += float(cosYaw)*speed;
 	pos.z += float(sinYaw)*speed;
-	pos.y = gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / gameWorld.terrain.getFlatten() + 3;
-	if (pos.y < gameWorld.GetWaterHeight()+3)
+	pos.y = (float)(gameWorld.getWorldXZHeight((int)pos.x,(int)pos.z) / gameWorld.terrain.getFlatten() + 1.5);
+	if (pos.y < gameWorld.GetWaterHeight() +3)
 	{
-		pos.y = gameWorld.GetWaterHeight()+2;
+		pos.y = (float)gameWorld.GetWaterHeight()+2;
 	}
 
 	if (pos.y > prevPos.y + 1.5)

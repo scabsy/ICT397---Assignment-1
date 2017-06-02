@@ -13,8 +13,7 @@ Input::Input()
 
 void Input::keys(unsigned char key, int x, int y)
 {
-	float speed;
-	cout << gameWorld.camera.pos.y << endl;
+	float speed = .5f;
 	if (gameWorld.camera.pos.y < 8)
 	{
 		speed = .1f;

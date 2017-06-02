@@ -9,7 +9,7 @@ World::World()
 	groupImg = texLoad.LoadTexture("textures/group.raw", 256, 256);
 	frameCounter = 0;
 	LoadSkybox("textures/sky.raw");
-	LoadWater("textures/water.raw",3);
+	LoadWater("textures/water.raw",5);
 }
 
 /*World::World(Camera *c)
@@ -105,7 +105,6 @@ void World::Draw()
 
 		gameObjects[i].render(time1 - time0);
 		gameObjects[i].processCollision(camera);
-
 
 		gameObjects[i].Update(camera);
 		//}

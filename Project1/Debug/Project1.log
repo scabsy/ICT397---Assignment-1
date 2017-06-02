@@ -1,13 +1,2 @@
-﻿  World.cpp
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(27): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(75): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(78): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(144): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(145): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(188): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(267): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(272): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(274): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(276): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-d:\documents\uni\2017\sem 1\ict397 - advanced games design and programming\assignments\ict397---assignment-1-md2-loader\project1\world.cpp(278): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-  Project1.vcxproj -> D:\Documents\Uni\2017\Sem 1\ICT397 - Advanced Games Design and Programming\Assignments\ICT397---Assignment-1-md2-loader\Debug\Project1.exe
+﻿  Camera.cpp
+  Project1.vcxproj -> D:\Documents\Uni\2017\Sem 1\ICT397 - Advanced Games Design and Programming\Assignments\1\ICT397---Assignment-1\Debug\Project1.exe
